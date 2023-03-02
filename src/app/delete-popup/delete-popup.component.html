@@ -1,0 +1,14 @@
+<div class="popup">
+  <mat-card>
+    <mat-toolbar color="primary" text-align="center">Delete Account</mat-toolbar>
+    <form action="#" method="POST">
+      <p>Are you sure you want to delete this user account? </p>
+      <label for="user-id" >User ID: {{id}}</label>
+      <p type="text" id="user-id" name="user-id"><br><br>
+      <div class="button-container">
+        <button type="button" class="btn btn-danger" (click)="openDialogAuthent()">Confirm</button>
+        <button type="button" class="btn btn-primary" (click)="onCloseClick()" >No</button>
+      </div>
+    </form>
+  </mat-card>
+</div>

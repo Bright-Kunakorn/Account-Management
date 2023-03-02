@@ -1,0 +1,20 @@
+  <mat-card>
+    <mat-toolbar color="primary" text-align="center">Authentication Required</mat-toolbar>
+      <div class="modal-content">
+        <div class="modal-body">
+          <form [formGroup]= "loginForm" (ngSubmit)="onPasswordSubmit()" fxLayoutAlign = "stretch" fxLayout = "column" class="login-form">
+            <div class="form-group">
+              <label for="password-input">Password:</label>
+              <mat-form-field >
+                <mat-label>Password</mat-label>
+                <input matInput type = "password" formControlName = "password" placeholder="Enter password" id="password"  required>
+              </mat-form-field>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="onCloseClick()" >Cancel</button>
+              <button type="submit" class="btn btn-primary" id="password-submit-button" >Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+</mat-card>

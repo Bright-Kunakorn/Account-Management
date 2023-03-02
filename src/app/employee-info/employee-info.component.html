@@ -1,0 +1,17 @@
+  <mat-card class="popup">
+      <mat-form-field>
+          <div >
+            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-2.webp"
+              alt="Generic placeholder image" class="img-fluid">
+          </div>
+          <div *ngFor="let obj of employees; let i = index">
+            <h1 class="mb-1">{{employees[0].firstName}} {{employees[i].lastName}}</h1>
+            <p class="mb-2 pb-1" style="color: #2b2a2a;" >Email : {{employees[i].email}}</p>
+            <p class="mb-2 pb-1" style="color: #2b2a2a;" >Salary : {{employees[i].salary}}</p>
+            <p class="mb-2 pb-1" style="color: #2b2a2a;" >Phone : {{employees[i].phone}}</p>
+            <p class="mb-2 pb-1" style="color: #2b2a2a;" >Hire Date : {{employees[i].hireDate}}</p>
+            <p class="mb-2 pb-1" style="color: #2b2a2a;" >Position : {{employees[i].position}}</p>
+            <p class="mb-2 pb-1" style="color: #2b2a2a;" >Department : {{employees[i].department}}</p>
+          </div>
+      </mat-form-field>
+  </mat-card>

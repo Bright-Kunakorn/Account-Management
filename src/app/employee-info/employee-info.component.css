@@ -4,3 +4,7 @@ body {
     font-family: 'Varela Round', sans-serif;
     font-size: 13px;
 }
+.popup {
+    width: 400px;
+    height: 650px;
+  }

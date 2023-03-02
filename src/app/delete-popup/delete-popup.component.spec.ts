@@ -1,17 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { LoginComponent } from './login.component';
 
-describe('LoginComponent', () => {
-  let component: LoginComponent;
-  let fixture: ComponentFixture<LoginComponent>;
+import { DeletePopupComponent } from './delete-popup.component';
+
+describe('DeletePopupComponent', () => {
+  let component: DeletePopupComponent;
+  let fixture: ComponentFixture<DeletePopupComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LoginComponent ]
+      declarations: [ DeletePopupComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(LoginComponent);
+    fixture = TestBed.createComponent(DeletePopupComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -19,4 +20,5 @@ describe('LoginComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  
 });

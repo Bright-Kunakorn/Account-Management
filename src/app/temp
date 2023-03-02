@@ -46,10 +46,10 @@
       <div class="collapse navbar-collapse" width="100%" id="navbarNav">
         <ul class="navbar-nav" style="height: 4rem">
           <li class="nav-item">
-            <a class="nav-link p-3" >Home</a>
+            <a class="nav-link p-3" href="home">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link p-3" href="employee-dashboard" >dashboard</a>
+            <a class="nav-link p-3">dashboard</a>
           </li>
           <li class="nav-item">
             <a class="nav-link p-3" href="add-employee">Add Account</a>
@@ -64,13 +64,22 @@
           <div class="table-title">
             <div class="row">
               <div class="col-sm-5">
+                <h2>User <b>Management</b></h2>
               </div>
             </div>
           </div>
+          <table
+            mat-table
+            [dataSource]="dataSource"
+            matSort
+            (matSortChange)="announceSortChange($event)"
+            class="table table-striped table-hover"
+          >
             <div>
-              <h2>Data visualization</h2>
+              <h2>Scatter Plot</h2>
               <figure id="scatter"></figure>
             </div>
+          </table>
         </div>
       </div>
     </div>

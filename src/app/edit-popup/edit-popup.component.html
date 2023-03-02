@@ -1,0 +1,23 @@
+<div>
+  <mat-card>
+    <h4>Update Employee Role</h4>
+    <mat-form-field appearance="fill">
+      <mat-label>New roles</mat-label>
+      <mat-select>
+        <mat-option *ngFor="let role of roles" [value]="role.value">
+          {{role.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div class="row gutters">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+        <div class="text-right">
+          <button type="button" id="submit" name="submit" class="btn btn-secondary"
+            (click)="onCloseClick()">Cancel</button>
+          <button type="button" id="submit" name="submit" class="btn btn-primary"
+            (click)="openDialogAuthent()">Update</button>
+        </div>
+      </div>
+    </div>
+  </mat-card>
+</div>
