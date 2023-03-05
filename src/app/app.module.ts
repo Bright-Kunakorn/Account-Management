@@ -29,6 +29,11 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import {MatSelectModule} from '@angular/material/select';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbPaginationModule, NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
+import { DecimalPipe, NgFor } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 
 const routerArray = [
@@ -80,7 +85,14 @@ const routerArray = [
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    MatSelectModule
+    MatSelectModule,
+    NgbModule,
+    NgbPaginationModule, 
+    NgbTypeaheadModule,
+    DecimalPipe, 
+    NgFor,
+    FormsModule,
+    MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

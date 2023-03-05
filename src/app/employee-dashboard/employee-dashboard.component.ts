@@ -3,7 +3,7 @@ import { DeletePopupComponent } from '../delete-popup/delete-popup.component';
 import { EditPopupComponent } from '../edit-popup/edit-popup.component';
 import { EmployeeInfoComponent } from '../employee-info/employee-info.component';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
-import { AfterViewInit, Component, ViewChild, Injectable } from '@angular/core';
+import { AfterViewInit, Component, ViewChild, Injectable , HostListener } from '@angular/core';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import employeeData from '../employee.json';
@@ -46,10 +46,14 @@ export class EmployeeDashboardComponent implements AfterViewInit {
   ];
   dataSource = new MatTableDataSource(EMPLOYEE_DATA);
   employees: Employee[] = employeeData;
+  collectionSize = this.employees.length;
   private id_: number;
+  page: number = 1;
+  pageSize = 10;
 
 
   constructor(
+    
     private _liveAnnouncer: LiveAnnouncer,
     private dialogRef: MatDialog
   ) {}
@@ -74,12 +78,26 @@ export class EmployeeDashboardComponent implements AfterViewInit {
   getData() {
     return this.id_;
   }
+  
 
   openDialogEdit(): void {
     this.dialogRef.open(EditPopupComponent);
   }
   openDialogInfo(): void {
     this.dialogRef.open(EmployeeInfoComponent);
+  }
+  showGoToTopButton = false;
+
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    this.showGoToTopButton = window.pageYOffset > 0;
+  }
+
+  goToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
   }
   
 }
