@@ -1,12 +1,13 @@
-import { Component, ViewChild, Injectable } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatDialog } from '@angular/material/dialog';
 import { DeletePopupComponent } from '../delete-popup/delete-popup.component';
 import { EditPopupComponent } from '../edit-popup/edit-popup.component';
 import { EmployeeInfoComponent } from '../employee-info/employee-info.component';
+import { LiveAnnouncer } from '@angular/cdk/a11y';
+import { AfterViewInit, Component, ViewChild, Injectable , HostListener, OnInit } from '@angular/core';
+import { MatSort, Sort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import employeeData from '../employee.json';
-import { MatDialog } from '@angular/material/dialog';
+import { HttpClient } from '@angular/common/http';
 
 interface Employee {
   id: number; 
@@ -25,6 +26,7 @@ interface Employee {
   birthDate: string; 
   educate: string; 
 }
+
 const EMPLOYEE_DATA: Employee[] = employeeData;
 /**
  * @title Table with sorting
@@ -40,32 +42,38 @@ const EMPLOYEE_DATA: Employee[] = employeeData;
 
 })
 
-export class EmployeeDashboardComponent {
-  displayedColumns = ['id', 'first_name', 'email', 'job_title', 'department', 'salary', 'hireDate' ,'icon'];
+export class EmployeeDashboardComponent implements OnInit, AfterViewInit {
   dataSource = new MatTableDataSource(EMPLOYEE_DATA);
   employees: Employee[] = employeeData;
   collectionSize = this.employees.length;
+  private id_: number;
+  page: number = 1;
+  pageSize = 10;
+  searchTerm: string;
+  currentRate = 8;
   employee: Employee[];
+  allEmployee: Employee[];
+  searchText: any;
 
-
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
-  id_: number;
-
+  
   constructor(
-    private dialogRef: MatDialog
-  ) {
-  }
+    private _liveAnnouncer: LiveAnnouncer,
+    private dialogRef: MatDialog,
+    private http: HttpClient
+  ) {}
+
+  @ViewChild(MatSort) sort: MatSort;
   
   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
 
-  applyFilter(filterValue: string) {
-    filterValue = filterValue.trim(); 
-    filterValue = filterValue.toLowerCase(); 
-    this.dataSource.filter = filterValue;
+  announceSortChange(sortState: Sort) {
+    if (sortState.direction) {
+      this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
+    } else {
+      this._liveAnnouncer.announce('Sorting cleared');
+    }
   }
   openDialogDel(Number: number): void {
     this.dialogRef.open(DeletePopupComponent);
@@ -81,14 +89,30 @@ export class EmployeeDashboardComponent {
   openDialogInfo(): void {
     this.dialogRef.open(EmployeeInfoComponent);
   }
+  ngOnInit(): void {
+    this.http.get<Employee[]>('../employee.json')
+      .subscribe((data: Employee[]) => {
+        this.collectionSize = data.length;
+        this.employee = data;
+        this.allEmployee = this.employees;
+      });
+  }
+  search(value: string): void {
+    this.employees = this.allEmployee.filter((val) => val.first_name.toLowerCase().includes(value));
+    this.collectionSize = this.employees.length;
+  }
+
+  showGoToTopButton = false;
+
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    this.showGoToTopButton = window.pageYOffset > 0;
+  }
+
   goToTop() {
     window.scrollTo({
       top: 0,
       behavior: 'smooth'
     });
+  }
 }
-}
-
-
-
-
