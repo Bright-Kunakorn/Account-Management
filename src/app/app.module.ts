@@ -23,7 +23,6 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { NgChartsModule } from 'ng2-charts';
-import { NavComponent } from './nav/nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
@@ -63,7 +62,6 @@ const routerArray = [
     EditPopupComponent,
     AuthenticationComponent,
     EmployeeInfoComponent,
-    NavComponent,
   ],
   imports: [
     BrowserModule,
