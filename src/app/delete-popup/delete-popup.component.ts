@@ -14,10 +14,10 @@ export class DeletePopupComponent {
     private employee: EmployeeDashboardComponent
     ){}  
 
-  onCloseClick(): void {
+  public onCloseClick(): void {
     this.dialogRef.closeAll();
   }
-  openDialogAuthent(): void {
+  public openDialogAuthent(): void {
     this.dialogRef.open(AuthenticationComponent)
   }
 }

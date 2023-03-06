@@ -21,26 +21,40 @@ interface Employee {
   birthDate: string; 
   educate: string; 
 }
-
 @Component({
   selector: 'app-employee-info',
   templateUrl: './employee-info.component.html',
   styleUrls: ['./employee-info.component.css']
 })
 export class EmployeeInfoComponent {
-  constructor(
-    private dialogRef: MatDialog,
-  ){}
-  employees: Employee[] = employeeData;
-  selectedEmployee: Employee; 
-  onSelect(employee: Employee) {
+  [x: string]: any;
+  private dialogRef: MatDialog;
+  private employees: Employee[] = employeeData;
+
+  constructor(dialogRef: MatDialog) {
+    this.dialogRef = dialogRef;
+  }
+  
+  ngOnInit() {
+    this.employeeService.getEmployees()
+      .subscribe((employees: Employee[]) => {
+        this.employees = employees;
+      });
+  }
+
+  public onSelect(employee: Employee): void {
     this.selectedEmployee = employee;
   }
-  openDialogEdit(): void {
+
+  public openDialogEdit(): void {
     this.dialogRef.open(EditPopupComponent);
   }
-  openDialogDel(Number: number): void {
+
+  public openDialogDel(Number: number): void {
     this.dialogRef.open(DeletePopupComponent);
   }
 
+  public getEmployees(): Employee[] {
+    return this.employees;
+  }
 }

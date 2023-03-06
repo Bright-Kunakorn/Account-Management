@@ -17,18 +17,18 @@ export class AuthenticationComponent {
     public dialog: MatDialog,
     private formBuilder : FormBuilder, private http: HttpClient, private router : Router){}
 
-  ngOnInit(): void {  
+  public ngOnInit(): void {  
     this.loginForm  = this.formBuilder.group({
       username : [''],
       password : ['']
     }) 
   }
 
-  onCloseClick(): void {
+  public onCloseClick(): void {
     this.dialogRef.close();
   }
   
-  onPasswordSubmit(): void{
+  public onPasswordSubmit(): void{
     (this.loginForm.value.password)
       if (this.loginForm.value.password == "admin") {
         alert("successful!");

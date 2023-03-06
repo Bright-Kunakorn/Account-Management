@@ -54,34 +54,33 @@ export class EmployeeDashboardComponent {
 
   constructor(
     private dialogRef: MatDialog
-  ) {
-  }
+  ) {}
   
-  ngAfterViewInit() {
+  public ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
 
-  applyFilter(filterValue: string) {
+  public applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); 
     filterValue = filterValue.toLowerCase(); 
     this.dataSource.filter = filterValue;
   }
-  openDialogDel(Number: number): void {
+  public openDialogDel(Number: number): void {
     this.dialogRef.open(DeletePopupComponent);
     this.id_ =  Number
   }
-  getData() {
+  public getData() {
     return this.id_;
   }
 
-  openDialogEdit(): void {
+  public openDialogEdit(): void {
     this.dialogRef.open(EditPopupComponent);
   }
-  openDialogInfo(): void {
+  public openDialogInfo(): void {
     this.dialogRef.open(EmployeeInfoComponent);
   }
-  goToTop() {
+  public goToTop() {
     window.scrollTo({
       top: 0,
       behavior: 'smooth'

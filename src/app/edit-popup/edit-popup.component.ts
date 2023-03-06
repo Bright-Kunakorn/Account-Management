@@ -27,10 +27,10 @@ export class EditPopupComponent {
     {value: 'sales-representative', viewValue: 'Sales Representative'},
     
   ];
-  onCloseClick(): void {
+  public onCloseClick(): void {
     this.dialog.closeAll();
   }
-  openDialogAuthent(): void {
+  public openDialogAuthent(): void {
     this.dialog.open(AuthenticationComponent)
   }
 
