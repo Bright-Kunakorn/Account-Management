@@ -48,44 +48,47 @@
             </div>
           </div>
         </div>
-        <form>
+        <form >
           <div class="mb-3 row">
-            <label for="table-filtering-search" class="col-xs-3 col-sm-auto col-form-label">Search:</label>
-            <div class="col-xs-3 col-sm-auto">
-              <input id="table-filtering-search" class="form-control" type="text" />
+            <div class="form-group">
+              <hr>
+              <input type="text" name="search" [(ngModel)]="searchText" placeholder="Search"/>
             </div>
           </div>
         </form>
         <table  matSort class="table table-striped table-hover " (matSortChange)="announceSortChange($event)
         "class="table table-striped table-hover" 
         > 
+        <thead>
           <tr>
-            <th mat-sort-header="id">
+            <th scope="col" sortable="id" mat-sort-header="id">
               ID
             </th>
-            <th mat-sort-header="name">
+            <th scope="col" sortable="first_name" mat-sort-header="name">
               Name
             </th>
-            <th mat-sort-header="email">
+            <th scope="col" sortable="email" mat-sort-header="email">
               Email
             </th>
-            <th mat-sort-header="position">
+            <th scope="col" sortable="job_title" mat-sort-header="position">
               Position
             </th>
-            <th mat-sort-header="department">
+            <th scope="col" sortable="department" mat-sort-header="department">
               Department
             </th>
-            <th mat-sort-header="salary">
+            <th scope="col" sortable="salary" mat-sort-header="salary">
               Salary
             </th>
-            <th mat-sort-header="hireDate">
+            <th scope="col" sortable="hireDate" mat-sort-header="hireDate">
               Hire Date
             </th>
             <th>
                 
             </th>
           </tr>
-          <tr *ngFor="let employee of employees | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
+        </thead>
+        <tbody>
+          <tr *ngFor="let employee of employees | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize | filter:searchText ">
             <td (click)="openDialogInfo()" data-toggle="tooltip">
               {{employee.id}}
             </td>
@@ -116,9 +119,10 @@
                 class="material-icons red-icon">&#xE5C9;</i></a>
             </td>
           </tr>
+        </tbody>
         </table >
         <div class="clearfix">
-          <ngb-pagination class="pagination-right" (click)="goToTop()"  [pageSize] = "pageSize" [collectionSize]="employees.length" [(page)]="page" [boundaryLinks]="true"></ngb-pagination>
+          <ngb-pagination class="pagination-right" (click)="goToTop()"  [pageSize] = "pageSize" [collectionSize]="employees.length" [(page)]="page" [boundaryLinks]="true" ></ngb-pagination>
         </div>
       </div>
     </div>

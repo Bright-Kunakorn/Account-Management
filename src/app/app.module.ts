@@ -34,7 +34,7 @@ import { NgbPaginationModule, NgbTypeaheadModule } from '@ng-bootstrap/ng-bootst
 import { DecimalPipe, NgFor } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatPaginatorModule } from '@angular/material/paginator';
-
+import { Ng2SearchPipeModule} from 'ng2-search-filter';
 
 const routerArray = [
   {
@@ -92,7 +92,8 @@ const routerArray = [
     DecimalPipe, 
     NgFor,
     FormsModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    Ng2SearchPipeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

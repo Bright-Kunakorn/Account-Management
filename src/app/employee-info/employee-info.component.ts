@@ -26,7 +26,7 @@ interface Employee {
 })
 export class EmployeeInfoComponent {
   employees: Employee[] = employeeData;
-  selectedEmployee: Employee; // assuming you have an Employee interface/class
+  selectedEmployee: Employee; 
   onSelect(employee: Employee) {
     this.selectedEmployee = employee;
   }
