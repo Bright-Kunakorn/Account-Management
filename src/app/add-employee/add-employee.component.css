@@ -3,7 +3,7 @@ body {
     background: #f5f5f5ae;
     font-family: 'Varela Round', sans-serif;
     font-size: 13px;
-    height: 200%;
+    height: auto;
     background-size: cover;
 }
 * {
