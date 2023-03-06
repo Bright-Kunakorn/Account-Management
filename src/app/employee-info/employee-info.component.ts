@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { DeletePopupComponent } from '../delete-popup/delete-popup.component';
+import { EditPopupComponent } from '../edit-popup/edit-popup.component';
 import employeeData from '../employee.json';
 
 interface Employee {
@@ -25,10 +28,19 @@ interface Employee {
   styleUrls: ['./employee-info.component.css']
 })
 export class EmployeeInfoComponent {
+  constructor(
+    private dialogRef: MatDialog,
+  ){}
   employees: Employee[] = employeeData;
   selectedEmployee: Employee; 
   onSelect(employee: Employee) {
     this.selectedEmployee = employee;
+  }
+  openDialogEdit(): void {
+    this.dialogRef.open(EditPopupComponent);
+  }
+  openDialogDel(Number: number): void {
+    this.dialogRef.open(DeletePopupComponent);
   }
 
 }

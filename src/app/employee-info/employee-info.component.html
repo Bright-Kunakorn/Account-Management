@@ -12,8 +12,8 @@
                     <p class="text-muted mb-1">{{employees[1].job_title}}</p>
                     <p class="text-muted mb-4">{{employees[1].department}}</p>
                     <div class="d-flex justify-content-center mb-2">
-                      <button type="button" class="btn btn-primary">Edit</button>
-                      <button type="button" class="btn btn-outline-primary ms-1">Message</button>
+                      <button type="button" class="btn btn-primary" (click)="openDialogEdit()" data-toggle="tooltip">Edit</button>
+                      <button type="button" class="btn btn-outline-primary ms-1" (click)="openDialogDel(1)" data-toggle="tooltip">Delete</button>
                     </div>
                   </div>
                 </div>

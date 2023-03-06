@@ -9,7 +9,6 @@ import { EmployeeDashboardComponent } from '../employee-dashboard/employee-dashb
   styleUrls: ['./delete-popup.component.css']
 })
 export class DeletePopupComponent {
-  public id = this.employee.getData();
   constructor(
     private dialogRef: MatDialog,
     private employee: EmployeeDashboardComponent
