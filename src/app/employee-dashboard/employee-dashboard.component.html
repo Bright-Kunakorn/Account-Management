@@ -48,81 +48,88 @@
             </div>
           </div>
         </div>
-        <form >
-          <div class="mb-3 row">
-            <div class="form-group">
-              <hr>
-              <input type="text" name="search" [(ngModel)]="searchText" placeholder="Search"/>
+        <div class="example-header">
+          <div class="input-group">
+            <div class="form-outline">
+              <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search" type="search" id="form1"
+                class="form-control" />
             </div>
+            <button type="button" class="btn btn-primary">
+              <i class="material-icons dp48" style="font-size: 10px;">search</i>
+            </button>
           </div>
-        </form>
-        <table  matSort class="table table-striped table-hover " (matSortChange)="announceSortChange($event)
-        "class="table table-striped table-hover" 
-        > 
-        <thead>
-          <tr>
-            <th scope="col" sortable="id" mat-sort-header="id">
-              ID
-            </th>
-            <th scope="col" sortable="first_name" mat-sort-header="name">
-              Name
-            </th>
-            <th scope="col" sortable="email" mat-sort-header="email">
-              Email
-            </th>
-            <th scope="col" sortable="job_title" mat-sort-header="position">
-              Position
-            </th>
-            <th scope="col" sortable="department" mat-sort-header="department">
-              Department
-            </th>
-            <th scope="col" sortable="salary" mat-sort-header="salary">
-              Salary
-            </th>
-            <th scope="col" sortable="hireDate" mat-sort-header="hireDate">
-              Hire Date
-            </th>
-            <th>
-                
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let employee of employees | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize | filter:searchText ">
-            <td (click)="openDialogInfo()" data-toggle="tooltip">
-              {{employee.id}}
-            </td>
-            <td (click)="openDialogInfo()" data-toggle="tooltip">
-              {{employee.first_name}} {{employee.last_name}}
-            </td>
-            <td (click)="openDialogInfo()" data-toggle="tooltip">
-              {{employee.email}}
-            </td>
-            <td (click)="openDialogInfo()" data-toggle="tooltip">
-              {{employee.job_title}}
-            </td>
-            <td (click)="openDialogInfo()" data-toggle="tooltip">
-              {{employee.department}}
-            </td>
-            <td (click)="openDialogInfo()" data-toggle="tooltip">
-              {{employee.salary}}
-            </td>
-            <td (click)="openDialogInfo()" data-toggle="tooltip">
-              {{employee.hireDate}}
-            </td>
-            <td>
-              <a class="settings" title="Settings" (click)="openDialogEdit()" data-toggle="tooltip">
-                <i class="material-icons">&#xE8B8;
-              </i>
-              </a>
-              <a (click)="openDialogDel(employee.id.valueOf())" data-toggle="tooltip"><i
-                class="material-icons red-icon">&#xE5C9;</i></a>
-            </td>
-          </tr>
-        </tbody>
-        </table >
-        <div class="clearfix">
-          <ngb-pagination class="pagination-right" (click)="goToTop()"  [pageSize] = "pageSize" [collectionSize]="employees.length" [(page)]="page" [boundaryLinks]="true" ></ngb-pagination>
+        </div>
+        <p></p>
+        <hr>
+
+        <div class="example-container mat-elevation-z8">
+
+          <mat-table [dataSource]="dataSource" matSort>
+
+            <ng-container matColumnDef="id">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+              <mat-cell *matCellDef="let employee"> {{employee.id}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="first_name">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+              <mat-cell *matCellDef="let employee" (click)="openDialogInfo()" data-toggle="tooltip">
+                {{employee.first_name}} {{employee.last_name}}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="email">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Email </mat-header-cell>
+              <mat-cell *matCellDef="let employee" (click)="openDialogInfo()" data-toggle="tooltip"> {{employee.email}}
+              </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="job_title">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Role </mat-header-cell>
+              <mat-cell *matCellDef="let employee" (click)="openDialogInfo()" data-toggle="tooltip">
+                {{employee.job_title}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="department">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Department </mat-header-cell>
+              <mat-cell *matCellDef="let employee" (click)="openDialogInfo()" data-toggle="tooltip">
+                {{employee.department}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="salary">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Salary ($) </mat-header-cell>
+              <mat-cell *matCellDef="let employee" (click)="openDialogInfo()" data-toggle="tooltip"> {{employee.salary}}
+              </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="hireDate">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> Hire Date </mat-header-cell>
+              <mat-cell *matCellDef="let employee" (click)="openDialogInfo()" data-toggle="tooltip">
+                {{employee.hireDate}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="icon">
+              <mat-header-cell *matHeaderCellDef mat-sort-header> </mat-header-cell>
+              <mat-cell *matCellDef="let employee">
+                <a class="settings" title="Settings" (click)="openDialogEdit()" data-toggle="tooltip">
+                  <i class="material-icons">&#xE8B8;
+                  </i>
+                </a>
+                <a class="delete" title="Delete" (click)="openDialogDel(employee.id.valueOf())" data-toggle="tooltip"><i
+                    class="material-icons red-icon">&#xE5C9;</i></a>
+              </mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let employee; columns: displayedColumns;">
+            </mat-row>
+          </mat-table>
+
+          <p></p>
+          <hr>
+
+          <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]"></mat-paginator>
+          <p></p>
+          <hr>
         </div>
       </div>
     </div>
