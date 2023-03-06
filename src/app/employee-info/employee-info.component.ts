@@ -2,16 +2,21 @@ import { Component } from '@angular/core';
 import employeeData from '../employee.json';
 
 interface Employee {
-  id: Number;
-  firstName: String;
-  lastName: String;
-  email: String;
-  phone: String;
-  position: String;
-  salary: Number;
-  hireDate: String;
-  department: String;
-
+  id: number; 
+  first_name: string; 
+  last_name: string;
+  email: string; 
+  phone: string; 
+  avatar: string; 
+  street: string; 
+  city: string; 
+  department: string;
+  job_title: string;
+  gender: string; 
+  salary: string; 
+  hireDate: string; 
+  birthDate: string; 
+  educate: string; 
 }
 
 @Component({
@@ -21,5 +26,9 @@ interface Employee {
 })
 export class EmployeeInfoComponent {
   employees: Employee[] = employeeData;
+  selectedEmployee: Employee; // assuming you have an Employee interface/class
+  onSelect(employee: Employee) {
+    this.selectedEmployee = employee;
+  }
 
 }

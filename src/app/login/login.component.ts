@@ -19,7 +19,6 @@ export class LoginComponent implements OnInit {
   login(){
     (this.loginForm.value.username,this.loginForm.value.password)
       if (this.loginForm.value.username == "admin" && this.loginForm.value.password == "admin") {
-        alert("Login successful!");
         this.loginForm.reset();
         this.router.navigate(["employee-dashboard"])
       } else {

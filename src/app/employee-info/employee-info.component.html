@@ -1,17 +1,84 @@
   <mat-card class="popup">
       <mat-form-field>
-          <div >
-            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-2.webp"
-              alt="Generic placeholder image" class="img-fluid">
+        <section style="background-color: #eee;">
+          <div class="container py-5">
+            <div class="row">
+              <div class="col-lg-4">
+                <div class="card mb-4">
+                  <div class="card-body text-center">
+                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
+                      class="rounded-circle img-fluid" style="width: 150px;">
+                    <h5 class="my-3">{{employees[1].first_name}} {{employees[1].last_name}}</h5>
+                    <p class="text-muted mb-1">{{employees[1].job_title}}</p>
+                    <p class="text-muted mb-4">{{employees[1].department}}</p>
+                    <div class="d-flex justify-content-center mb-2">
+                      <button type="button" class="btn btn-primary">Edit</button>
+                      <button type="button" class="btn btn-outline-primary ms-1">Message</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-8">
+                <div class="card mb-4">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-sm-3">
+                        <p class="mb-0">Full Name</p>
+                      </div>
+                      <div class="col-sm-9">
+                        <p class="text-muted mb-0">{{employees[1].first_name}} {{employees[1].last_name}}</p>
+                      </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                      <div class="col-sm-3">
+                        <p class="mb-0">Email</p>
+                      </div>
+                      <div class="col-sm-9">
+                        <p class="text-muted mb-0">{{employees[1].email}}</p>
+                      </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                      <div class="col-sm-3">
+                        <p class="mb-0">Phone</p>
+                      </div>
+                      <div class="col-sm-9">
+                        <p class="text-muted mb-0">{{employees[1].phone}}</p>
+                      </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                      <div class="col-sm-3">
+                        <p class="mb-0">Salary</p>
+                      </div>
+                      <div class="col-sm-9">
+                        <p class="text-muted mb-0">{{employees[1].salary}}</p>
+                      </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                      <div class="col-sm-3">
+                        <p class="mb-0">Address</p>
+                      </div>
+                      <div class="col-sm-9">
+                        <p class="text-muted mb-0">{{employees[1].street}}, {{employees[1].city}} </p>
+                      </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                      <div class="col-sm-3">
+                        <p class="mb-0">Hire Date</p>
+                      </div>
+                      <div class="col-sm-9">
+                        <p class="text-muted mb-0">{{employees[1].hireDate}}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <div *ngFor="let obj of employees; let i = index">
-            <h1 class="mb-1">{{employees[0].firstName}} {{employees[i].lastName}}</h1>
-            <p class="mb-2 pb-1" style="color: #2b2a2a;" >Email : {{employees[i].email}}</p>
-            <p class="mb-2 pb-1" style="color: #2b2a2a;" >Salary : {{employees[i].salary}}</p>
-            <p class="mb-2 pb-1" style="color: #2b2a2a;" >Phone : {{employees[i].phone}}</p>
-            <p class="mb-2 pb-1" style="color: #2b2a2a;" >Hire Date : {{employees[i].hireDate}}</p>
-            <p class="mb-2 pb-1" style="color: #2b2a2a;" >Position : {{employees[i].position}}</p>
-            <p class="mb-2 pb-1" style="color: #2b2a2a;" >Department : {{employees[i].department}}</p>
-          </div>
+        </section>
       </mat-form-field>
   </mat-card>
