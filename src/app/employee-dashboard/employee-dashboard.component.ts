@@ -1,4 +1,4 @@
-import { Component, ViewChild, Injectable } from '@angular/core';
+import { Component, ViewChild, Injectable, OnInit } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -40,21 +40,28 @@ const EMPLOYEE_DATA: Employee[] = employeeData;
 
 })
 
-export class EmployeeDashboardComponent {
+export class EmployeeDashboardComponent implements OnInit {
   displayedColumns = ['id', 'first_name', 'email', 'job_title', 'department', 'salary', 'hireDate' ,'icon'];
   dataSource = new MatTableDataSource(EMPLOYEE_DATA);
   employees: Employee[] = employeeData;
   collectionSize = this.employees.length;
   employee: Employee[];
+  public   id: number;
+  currentID = this.getID();
 
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  id_: number;
 
   constructor(
-    private dialogRef: MatDialog
-  ) {}
+    private dialogRef: MatDialog,
+  ) {
+    this.dialogRef = dialogRef;
+  }
+  ngOnInit(): void {
+  
+  }
+  private employeeInfo: EmployeeInfoComponent;
   
   public ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
@@ -66,19 +73,27 @@ export class EmployeeDashboardComponent {
     filterValue = filterValue.toLowerCase(); 
     this.dataSource.filter = filterValue;
   }
-  public openDialogDel(Number: number): void {
+  public openDialogDel(ID: number): void {
     this.dialogRef.open(DeletePopupComponent);
-    this.id_ =  Number
+    this.id =  ID;
   }
-  public getData() {
-    return this.id_;
+  public getID() {
+    return this.id;
+  }
+  public setID(ID: number){
+    this.id = ID;
   }
 
   public openDialogEdit(): void {
     this.dialogRef.open(EditPopupComponent);
   }
-  public openDialogInfo(): void {
+  public openDialogInfo(ID: number): void {
     this.dialogRef.open(EmployeeInfoComponent);
+    this.setID(ID);
+    console.log(this.employeeInfo.getSelect())
+    this.id = this.getID();
+    console.log(this.getID());
+    this.employeeInfo.setSelect(ID);
   }
   public goToTop() {
     window.scrollTo({
@@ -87,7 +102,3 @@ export class EmployeeDashboardComponent {
     });
 }
 }
-
-
-
-

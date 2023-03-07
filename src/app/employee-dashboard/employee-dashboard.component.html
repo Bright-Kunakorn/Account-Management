@@ -40,7 +40,7 @@
         <div class="table-title">
           <div class="row">
             <div class="col-sm-5">
-              <h2>User <b>Management</b></h2>
+              <h2>{{getID()}} <b>Management</b></h2>
             </div>
             <div class="col-sm-7">
               <a href="add-employee" class="btn btn-secondary"><i class="material-icons">&#xE147;</i>
@@ -73,37 +73,37 @@
 
             <ng-container matColumnDef="first_name">
               <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
-              <mat-cell *matCellDef="let employee" (click)="openDialogInfo()" data-toggle="tooltip">
+              <mat-cell *matCellDef="let employee" (click)="openDialogInfo(employee.id)"  data-toggle="tooltip" >
                 {{employee.first_name}} {{employee.last_name}}</mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="email">
               <mat-header-cell *matHeaderCellDef mat-sort-header> Email </mat-header-cell>
-              <mat-cell *matCellDef="let employee" (click)="openDialogInfo()" data-toggle="tooltip"> {{employee.email}}
+              <mat-cell *matCellDef="let employee" (click)="openDialogInfo(employee.id)" data-toggle="tooltip"> {{employee.email}}
               </mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="job_title">
               <mat-header-cell *matHeaderCellDef mat-sort-header> Role </mat-header-cell>
-              <mat-cell *matCellDef="let employee" (click)="openDialogInfo()" data-toggle="tooltip">
+              <mat-cell *matCellDef="let employee" (click)="openDialogInfo(employee.id)" data-toggle="tooltip">
                 {{employee.job_title}} </mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="department">
               <mat-header-cell *matHeaderCellDef mat-sort-header> Department </mat-header-cell>
-              <mat-cell *matCellDef="let employee" (click)="openDialogInfo()" data-toggle="tooltip">
+              <mat-cell *matCellDef="let employee" (click)="openDialogInfo(employee.id)" data-toggle="tooltip">
                 {{employee.department}} </mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="salary">
               <mat-header-cell *matHeaderCellDef mat-sort-header> Salary ($) </mat-header-cell>
-              <mat-cell *matCellDef="let employee" (click)="openDialogInfo()" data-toggle="tooltip"> {{employee.salary}}
+              <mat-cell *matCellDef="let employee" (click)="openDialogInfo(employee.id)" data-toggle="tooltip"> {{employee.salary}}
               </mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="hireDate">
               <mat-header-cell *matHeaderCellDef mat-sort-header> Hire Date </mat-header-cell>
-              <mat-cell *matCellDef="let employee" (click)="openDialogInfo()" data-toggle="tooltip">
+              <mat-cell *matCellDef="let employee" (click)="openDialogInfo(employee.id)" data-toggle="tooltip">
                 {{employee.hireDate}} </mat-cell>
             </ng-container>
 

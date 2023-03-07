@@ -1,16 +1,43 @@
 body {
-    color: #a1a6af;
-    background: #f5f5f5ae;
+    color: #8eaeeb;
+    background: #e2dfdfae;
     font-family: 'Varela Round', sans-serif;
     font-size: 13px;
-    height: auto;
+    height:auto;
     background-size: cover;
+    margin: 0;
+    min-height: 100vh;
 }
 * {
 	margin: 0;
 	padding: 0;
 	list-style-type: none;
 }
+.red-icon {
+    color: red;
+  }
+ .my-button {
+    background-color: #6783cc;
+    color: white;
+  }
+.my-icon {
+    color: #ffffff;
+  }
+
+
+.pagination-right {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 20px;
+  }
+  
+
+#goToTopButton {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+  }
 ul{
 	display: flex;
 	width: 100%;
@@ -34,7 +61,7 @@ li:hover {
   color: #27262c;
   animation: spring 300ms ease-out;
   text-shadow: 0 -1px 0 #1036e1;
-	font-weight: bold;
+  font-weight: bold;
 }
 li:active {
   transform: translateY(4px);
@@ -72,14 +99,14 @@ li:active {
 }
 .table-wrapper {
     min-width: 1000px;
-    background: #fff;
+    background: #ffffff;
     padding: 20px 25px;
     border-radius: 3px;
     box-shadow: 0 1px 1px rgba(0,0,0,.05);
 }
 .table-title {
     padding-bottom: 15px;
-    background: #299be4;
+    background: #6783cc;
     color: #fff;
     padding: 16px 30px;
     margin: -20px -25px 10px;
@@ -95,7 +122,7 @@ li:active {
     font-size: 13px;
     background: #fff;
     border: none;
-    min-width: 50px;
+    min-width: 180px;
     border-radius: 2px;
     border: none;
     outline: none !important;
@@ -120,10 +147,10 @@ table.table tr th, table.table tr td {
     vertical-align: middle;
 }
 table.table tr th:first-child {
-    width: 60px;
+    width: 1000px;
 }
 table.table tr th:last-child {
-    width: 100px;
+    width: 2000px;
 }
 table.table-striped tbody tr:nth-of-type(odd) {
     background-color: #fcfcfc;
@@ -176,6 +203,19 @@ table.table .avatar {
 }
 .text-info {
     color: #62c9e8;
+}
+.mat-column-id {
+    flex: 0 0 50px;
+}
+.mat-column-avatar {
+    flex: 0 0 100px;
+}
+.mat-column-email {
+    flex: 0 0 240px;
+}
+
+.mat-column-icon{
+    flex: 0 0 70px;
 }
 .text-warning {
     color: #FFC107;

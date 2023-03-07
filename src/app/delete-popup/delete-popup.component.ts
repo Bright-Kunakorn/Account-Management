@@ -13,7 +13,7 @@ export class DeletePopupComponent {
     private dialogRef: MatDialog,
     private employee: EmployeeDashboardComponent
     ){}  
-
+  public id = this.employee.id;
   public onCloseClick(): void {
     this.dialogRef.closeAll();
   }

@@ -6,7 +6,7 @@
               <div class="col-lg-4">
                 <div class="card mb-4">
                   <div class="card-body text-center">
-                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
+                    <img src="{{getEmployees()[1].avatar}}" alt="avatar"
                       class="rounded-circle img-fluid" style="width: 150px;">
                     <h5 class="my-3">{{getEmployees()[1].first_name}} {{getEmployees()[1].last_name}}</h5>
                     <p class="my-3" >{{getEmployees()[1].gender}}</p>
@@ -24,7 +24,7 @@
                   <div class="card-body">
                     <div class="row">
                       <div class="col-sm-3">
-                        <p class="mb-0">Full Name</p>
+                        <p class="mb-0">Full Name {{getSelect()}}</p>
                       </div>
                       <div class="col-sm-9">
                         <p class="text-muted mb-0">{{getEmployees()[1].first_name}} {{getEmployees()[1].last_name}}</p>

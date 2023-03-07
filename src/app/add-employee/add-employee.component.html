@@ -1,37 +1,120 @@
-<!DOCTYPE html>
-<html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Bootstrap User Management Data Table</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-</head>
-<body>
-    <nav style="background-color: green;" class="navbar navbar-expand-lg navbar-light bg-light p-0">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" width="100%" id="navbarNav">
-            <ul class="navbar-nav" style="height: 4rem;">
-                <li class="nav-item">
-                    <a class="nav-link p-3" href= "home" >Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link p-3" href= "employee-dashboard" >dashboard</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link p-3" >Add Account</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-item mr-3 nav-link p-3" href="login">Logout</a>
-                  </li>
-            </ul>
-        </div>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>User Management Data Table</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  </head>
+  
+  <body>
+    <nav style="background-color: green" class="navbar navbar-expand-lg navbar-light bg-light p-0">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" width="100%" id="navbarNav">
+        <ul class="navbar-nav" style="height: 4rem">
+          <li class="nav-item">
+            <a class="nav-link p-3" href="home">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link p-3" href="employee-dashboard">dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link p-3" >Add Account</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-item mr-3 nav-link p-3" href="login">Logout</a>
+          </li>
+        </ul>
+      </div>
     </nav>
-</body>
+    <div class="container-xl">
+      <div class="table-responsive">
+        <div class="table-wrapper">
+          <div class="table-title">
+            <div class="row">
+              <div class="col-sm-5">
+                <h2>Add <b>Employee</b></h2>
+              </div>
+            </div>
+          </div>
+          <div class="example-header">
+            <div class="input-group">
+              <div class="form-outline">
+                <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search" type="search" id="form1"
+                  class="form-control" />
+              </div>
+              <button type="button" class="btn btn-primary my-button">
+                <i class="material-icons dp48 my-icon" style="font-size: 10px;">search</i>
+              </button>
+            </div>
+          </div>
+          <p></p>
+          <hr>
+  
+          <div class="example-container mat-elevation-z8">
+  
+            <mat-table [dataSource]="dataSource" matSort>
+  
+              <ng-container matColumnDef="id">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+                <mat-cell *matCellDef="let employee"> {{employee.id}} </mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="avatar">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>  </mat-header-cell>
+                <mat-cell *matCellDef="let employee"> <img src="{{employee.avatar}}" alt="avatar"
+                  class="rounded-circle img-fluid" style="width: 30px;"> </mat-cell>
+              </ng-container>
+  
+              <ng-container matColumnDef="first_name">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+                <mat-cell *matCellDef="let employee" (click)="openDialogInfo(employee.id)" data-toggle="tooltip">
+                  {{employee.first_name}} {{employee.last_name}}</mat-cell>
+              </ng-container>
+  
+              <ng-container matColumnDef="email">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Email </mat-header-cell>
+                <mat-cell *matCellDef="let employee" (click)="openDialogInfo(employee.id)" data-toggle="tooltip"> {{employee.email}}
+                </mat-cell>
+              </ng-container>
+  
+              <ng-container matColumnDef="job_title">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Role </mat-header-cell>
+                <mat-cell *matCellDef="let employee" (click)="openDialogInfo(employee.id)" data-toggle="tooltip">
+                  {{employee.job_title}} </mat-cell>
+              </ng-container>
+  
+              <ng-container matColumnDef="icon">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> </mat-header-cell>
+                <mat-cell *matCellDef="let employee">
+                    
+                  <a class="settings" title="Settings" (click)="openDialogEdit()" data-toggle="tooltip">
+                    <i class="material-icons">&#xE8B8;
+                    </i>
+                  </a>
+                  <a class="delete" title="Delete" (click)="openDialogDel(employee.id.valueOf())" data-toggle="tooltip"><i
+                      class="material-icons red-icon">&#xE5C9;</i></a>
+                </mat-cell>
+              </ng-container>
+  
+              <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+              <mat-row *matRowDef="let employee; columns: displayedColumns;">
+              </mat-row>
+            </mat-table>
+            <p></p>
+            <hr>
+            <mat-paginator [pageSizeOptions]="[10, 25, 50, 100]"></mat-paginator>
+            <p></p>
+            <hr>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
