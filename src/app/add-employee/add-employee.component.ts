@@ -3,6 +3,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs/internal/Subscription';
 import { DeletePopupComponent } from '../delete-popup/delete-popup.component';
 import { EditPopupComponent } from '../edit-popup/edit-popup.component';
 import { EmployeeInfoComponent } from '../employee-info/employee-info.component';
@@ -37,14 +39,18 @@ export class AddEmployeeComponent {
   employees: Employee[] = WaitingEmployeeData;
   collectionSize = this.employees.length;
   private   id: number;
+  selected: number;
+  routeQueryParams$: Subscription;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(
-    private dialogRef: MatDialog,
-  ) {
-    this.dialogRef = dialogRef;
+  constructor(public dialogRef: MatDialog, private route: ActivatedRoute, private router: Router) {
+    this.routeQueryParams$ = route.queryParams.subscribe(params => {
+      if (params['dialog']) {
+        this.openDialogInfo(this.id);
+      }
+    });
   }
   private employeeInfo: EmployeeInfoComponent;
   
@@ -71,11 +77,17 @@ export class AddEmployeeComponent {
   public openDialogEdit(): void {
     this.dialogRef.open(EditPopupComponent);
   }
-  public openDialogInfo(ID: number): number {
-    this.dialogRef.open(EmployeeInfoComponent);
-    this.employeeInfo.setSelect(ID);
-    return ID;
+  public openDialogInfo(ID: number): void {
+    const dialogRef = this.dialogRef.open(EmployeeInfoComponent, {
+      data: {selected: ID}
+    });
+  
+    dialogRef.afterOpened().subscribe(result => {
+      this.selected = ID;
+      this.router.navigate(['.'], { relativeTo: this.route });
+    });
   }
+  
   public goToTop() {
     window.scrollTo({
       top: 0,

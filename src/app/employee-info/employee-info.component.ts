@@ -1,9 +1,10 @@
-import { Component, Input } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { Component, Inject } from '@angular/core';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DeletePopupComponent } from '../delete-popup/delete-popup.component';
 import { EditPopupComponent } from '../edit-popup/edit-popup.component';
 import employeeData from '../employee.json';
-import { EmployeeDashboardComponent } from '../employee-dashboard/employee-dashboard.component';
+import { DialogData, EmployeeDashboardComponent } from '../employee-dashboard/employee-dashboard.component';
+
 
 interface Employee {
   id: number; 
@@ -27,17 +28,15 @@ interface Employee {
   templateUrl: './employee-info.component.html',
   styleUrls: ['./employee-info.component.css']
 })
-export class EmployeeInfoComponent  {
+export class EmployeeInfoComponent {
   [x: string]: any;
-  private dialogRef: MatDialog;
   private employees: Employee[] = employeeData;
+  public selectedEmployee:number;
 
-  @Input() selectedEmployee:number;
-  
-  constructor(dialogRef: MatDialog, public employeeDashboard: EmployeeDashboardComponent) {
+  constructor(
+    public dialogRef: MatDialogRef<EmployeeDashboardComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData) {
     this.dialogRef = dialogRef;
-    console.log(employeeDashboard.getID());
-    console.log(this.selectedEmployee);
   }
   ngOnInit() {
     this.employeeService.getEmployees()
@@ -53,11 +52,12 @@ export class EmployeeInfoComponent  {
   }
 
   public openDialogEdit(): void {
-    this.dialogRef.open(EditPopupComponent);
+    this.dialog.open(EditPopupComponent);
   }
 
   public openDialogDel(ID: number): void {
-    this.dialogRef.open(DeletePopupComponent);
+    this.dialog.open(DeletePopupComponent);
+    this.id = ID;
   }
 
   public getEmployees(): Employee[] {
