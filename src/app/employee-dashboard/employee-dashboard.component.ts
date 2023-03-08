@@ -81,8 +81,14 @@ export class EmployeeDashboardComponent {
     this.dataSource.filter = filterValue;
   }
   public openDialogDel(ID: number): void {
-    this.dialogRef.open(DeletePopupComponent);
-    this.id =  ID;
+    const dialogRef = this.dialogRef.open(DeletePopupComponent, {
+      data: {selected: ID}
+    });
+  
+    dialogRef.afterOpened().subscribe(result => {
+      this.selected = ID;
+      this.router.navigate(['.'], { relativeTo: this.route });
+    });
   }
   public getID() {
     return this.id;

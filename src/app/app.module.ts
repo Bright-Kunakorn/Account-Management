@@ -34,6 +34,7 @@ import { DecimalPipe, NgFor } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { Ng2SearchPipeModule} from 'ng2-search-filter';
+import { InfoAddEmployeeComponent } from './info-add-employee/info-add-employee.component';
 
 const routerArray = [
   {
@@ -62,6 +63,7 @@ const routerArray = [
     EditPopupComponent,
     AuthenticationComponent,
     EmployeeInfoComponent,
+    InfoAddEmployeeComponent,
   ],
   imports: [
     BrowserModule,

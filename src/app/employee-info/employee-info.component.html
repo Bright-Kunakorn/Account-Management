@@ -6,12 +6,12 @@
               <div class="col-lg-4">
                 <div class="card mb-4">
                   <div class="card-body text-center">
-                    <img src="{{getEmployees()[data.selected].avatar}}" alt="avatar"
+                    <img src="{{getEmployees()[data.selected-1].avatar}}" alt="avatar"
                       class="rounded-circle img-fluid" style="width: 150px;">
-                    <h5 class="my-3">{{getEmployees()[data.selected].first_name}} {{getEmployees()[data.selected].last_name}}</h5>
-                    <p class="my-3" >{{getEmployees()[data.selected].gender}}</p>
-                    <p class="text-muted mb-1">{{getEmployees()[data.selected].job_title}}</p>
-                    <p class="text-muted mb-4">{{getEmployees()[data.selected].department}}</p>
+                    <h5 class="my-3">{{getEmployees()[data.selected-1].first_name}} {{getEmployees()[data.selected-1].last_name}}</h5>
+                    <p class="my-3" >{{getEmployees()[data.selected-1].gender}}</p>
+                    <p class="text-muted mb-1">{{getEmployees()[data.selected-1].job_title}}</p>
+                    <p class="text-muted mb-4">{{getEmployees()[data.selected-1].department}}</p>
                     <div class="d-flex justify-content-center mb-2">
                       <button type="button" class="btn btn-primary" (click)="openDialogEdit()" data-toggle="tooltip">Edit</button>
                       <button type="button" class="btn btn-outline-primary ms-1" (click)="openDialogDel(1)" data-toggle="tooltip">Delete</button>

@@ -9,6 +9,7 @@ import { DeletePopupComponent } from '../delete-popup/delete-popup.component';
 import { EditPopupComponent } from '../edit-popup/edit-popup.component';
 import { EmployeeInfoComponent } from '../employee-info/employee-info.component';
 import WaitingEmployeeData from '../waiting_employee.json';
+import { InfoAddEmployeeComponent } from '../info-add-employee/info-add-employee.component';
 interface Employee {
   id: number; 
   first_name: string; 
@@ -52,7 +53,7 @@ export class AddEmployeeComponent {
       }
     });
   }
-  private employeeInfo: EmployeeInfoComponent;
+  private employeeInfo: InfoAddEmployeeComponent;
   
   public ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
@@ -78,7 +79,7 @@ export class AddEmployeeComponent {
     this.dialogRef.open(EditPopupComponent);
   }
   public openDialogInfo(ID: number): void {
-    const dialogRef = this.dialogRef.open(EmployeeInfoComponent, {
+    const dialogRef = this.dialogRef.open(InfoAddEmployeeComponent, {
       data: {selected: ID}
     });
   

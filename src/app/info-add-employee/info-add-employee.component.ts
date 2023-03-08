@@ -2,9 +2,8 @@ import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DeletePopupComponent } from '../delete-popup/delete-popup.component';
 import { EditPopupComponent } from '../edit-popup/edit-popup.component';
-import employeeData from '../employee.json';
 import { DialogData, EmployeeDashboardComponent } from '../employee-dashboard/employee-dashboard.component';
-
+import WaitingEmployeeData from '../waiting_employee.json';
 
 interface Employee {
   id: number; 
@@ -24,13 +23,13 @@ interface Employee {
   educate: string; 
 }
 @Component({
-  selector: 'app-employee-info',
-  templateUrl: './employee-info.component.html',
-  styleUrls: ['./employee-info.component.css']
+  selector: 'app-info-add-employee',
+  templateUrl: './info-add-employee.component.html',
+  styleUrls: ['./info-add-employee.component.css']
 })
-export class EmployeeInfoComponent {
+export class InfoAddEmployeeComponent {
   [x: string]: any;
-  private employees: Employee[] = employeeData;
+  private employees: Employee[] = WaitingEmployeeData;
   public selectedEmployee:number;
 
   constructor(
