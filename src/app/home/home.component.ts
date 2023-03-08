@@ -14,11 +14,16 @@ export class HomeComponent implements OnInit {
     this.drawPlot();
   }
   private data = [
-    {"Framework": "Vue", "Stars": "166443", "Released": "2014"},
-    {"Framework": "React", "Stars": "150793", "Released": "2013"},
-    {"Framework": "Angular", "Stars": "62342", "Released": "2016"},
-    {"Framework": "Backbone", "Stars": "27647", "Released": "2010"},
-    {"Framework": "Ember", "Stars": "21471", "Released": "2011"},
+    {"Framework": "Business Development", "Stars": "45", "Released": "1"},
+    {"Framework": "Product Management", "Stars": "80", "Released": "2"},
+    {"Framework": "Support", "Stars": "4", "Released": "3"},
+    {"Framework": "Accounting", "Stars": "25", "Released": "4"},
+    {"Framework": "Training", "Stars": "13", "Released": "5"},
+    {"Framework": "Legal", "Stars": "52", "Released": "6"},
+    {"Framework": "Sales", "Stars": "69", "Released": "7"},
+    {"Framework": "Services", "Stars": "10", "Released": "8"},
+    {"Framework": "Research and Development", "Stars": "95", "Released": "9"},
+
   ];
   private svg: d3.Selection<SVGGElement, unknown, HTMLElement, any>;
   private margin = 50;
@@ -37,7 +42,7 @@ export class HomeComponent implements OnInit {
   private drawPlot(): void {
     // Add X axis
     const x = d3.scaleLinear()
-    .domain([2009, 2017])
+    .domain([0, 10])
     .range([ 0, this.width ]);
     this.svg.append("g")
     .attr("transform", "translate(0," + this.height + ")")
@@ -45,7 +50,7 @@ export class HomeComponent implements OnInit {
 
     // Add Y axis
     const y = d3.scaleLinear()
-    .domain([0, 200000])
+    .domain([0, 100])
     .range([ this.height, 0]);
     this.svg.append("g")
     .call(d3.axisLeft(y));
