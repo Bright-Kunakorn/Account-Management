@@ -7,35 +7,37 @@ import { MatDialogRef, MatDialog } from '@angular/material/dialog';
 @Component({
   selector: 'app-authentication',
   templateUrl: './authentication.component.html',
-  styleUrls: ['./authentication.component.css']
+  styleUrls: ['./authentication.component.css'],
 })
-export class AuthenticationComponent {
-  private password = 123
-  public loginForm!: FormGroup
+export class AuthenticationComponent implements OnInit {
+  private password = 123;
+  public loginForm!: FormGroup;
   constructor(
     public dialogRef: MatDialogRef<AuthenticationComponent>,
     public dialog: MatDialog,
-    private formBuilder: FormBuilder, private http: HttpClient, private router: Router) { }
+    private formBuilder: FormBuilder,
+    private http: HttpClient,
+    private router: Router
+  ) {}
 
-  public ngOnInit(): void {
+  ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
       username: [''],
-      password: ['']
-    })
+      password: [''],
+    });
   }
 
-  public onCloseClick(): void {
+  onCloseClick(): void {
     this.dialogRef.close();
   }
 
-  public onPasswordSubmit(): void {
-    (this.loginForm.value.password)
-    if (this.loginForm.value.password == "admin") {
-      alert("successful!");
+  onPasswordSubmit(): void {
+    if (this.loginForm.value.password === this.password) {
+      alert('Successful!');
       this.loginForm.reset();
       this.dialog.closeAll();
     } else {
-      alert("Invalid password.");
+      alert('Invalid password.');
     }
-  };
+  }
 }
