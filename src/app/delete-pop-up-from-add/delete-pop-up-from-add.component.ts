@@ -1,7 +1,14 @@
 import { Component, Inject } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import {
+  MatDialog,
+  MatDialogRef,
+  MAT_DIALOG_DATA,
+} from '@angular/material/dialog';
 import { AuthenticationComponent } from '../authentication/authentication.component';
-import { EmployeeDashboardComponent, DialogData } from '../employee-dashboard/employee-dashboard.component';
+import {
+  EmployeeDashboardComponent,
+  DialogData,
+} from '../employee-dashboard/employee-dashboard.component';
 import WaitingEmployeeData from '../server/waiting_employee.json';
 
 interface Employee {
@@ -22,7 +29,11 @@ export class DeletePopUpFromAddComponent {
   private employees: Employee[] = WaitingEmployeeData;
   private dialog: MatDialog;
 
-  constructor(public dialogRef: MatDialogRef<EmployeeDashboardComponent>, @Inject(MAT_DIALOG_DATA) public data: DialogData, dialog: MatDialog) {
+  constructor(
+    public dialogRef: MatDialogRef<EmployeeDashboardComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData,
+    dialog: MatDialog
+  ) {
     this.dialog = dialog;
   }
 
