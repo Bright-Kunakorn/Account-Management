@@ -12,21 +12,21 @@ import { InfoAddEmployeeComponent } from '../info-add-employee/info-add-employee
 import { DeletePopUpFromAddComponent } from '../delete-pop-up-from-add/delete-pop-up-from-add.component';
 
 interface Employee {
-  id: number; 
-  first_name: string; 
+  id: number;
+  first_name: string;
   last_name: string;
-  email: string; 
-  phone: string; 
-  avatar: string; 
-  street: string; 
-  city: string; 
+  email: string;
+  phone: string;
+  avatar: string;
+  street: string;
+  city: string;
   department: string;
   job_title: string;
-  gender: string; 
-  salary: string; 
-  hireDate: string; 
-  birthDate: string; 
-  educate: string; 
+  gender: string;
+  salary: string;
+  hireDate: string;
+  birthDate: string;
+  educate: string;
 }
 const EMPLOYEE_DATA: Employee[] = WaitingEmployeeData;
 
@@ -36,11 +36,11 @@ const EMPLOYEE_DATA: Employee[] = WaitingEmployeeData;
   styleUrls: ['./add-employee.component.css']
 })
 export class AddEmployeeComponent {
-  displayedColumns = ['id','avatar', 'first_name', 'email', 'job_title' ,'icon'];
+  displayedColumns = ['id', 'avatar', 'first_name', 'email', 'job_title', 'icon'];
   dataSource = new MatTableDataSource(EMPLOYEE_DATA);
   employees: Employee[] = WaitingEmployeeData;
   collectionSize = this.employees.length;
-  private   id: number;
+  private id: number;
   selected: number;
   routeQueryParams$: Subscription;
 
@@ -55,22 +55,22 @@ export class AddEmployeeComponent {
     });
   }
   private employeeInfo: InfoAddEmployeeComponent;
-  
+
   public ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
 
   public applyFilter(filterValue: string) {
-    filterValue = filterValue.trim(); 
-    filterValue = filterValue.toLowerCase(); 
+    filterValue = filterValue.trim();
+    filterValue = filterValue.toLowerCase();
     this.dataSource.filter = filterValue;
   }
   public openDialogDel(ID: number): void {
     const dialogRef = this.dialogRef.open(DeletePopUpFromAddComponent, {
-      data: {selected: ID}
+      data: { selected: ID }
     });
-  
+
     dialogRef.afterOpened().subscribe(result => {
       this.selected = ID;
       this.router.navigate(['.'], { relativeTo: this.route });
@@ -80,7 +80,7 @@ export class AddEmployeeComponent {
   public getID() {
     return this.id;
   }
-  public setID(ID: number){
+  public setID(ID: number) {
     this.id = ID;
   }
 
@@ -89,19 +89,19 @@ export class AddEmployeeComponent {
   }
   public openDialogInfo(ID: number): void {
     const dialogRef = this.dialogRef.open(InfoAddEmployeeComponent, {
-      data: {selected: ID}
+      data: { selected: ID }
     });
-  
+
     dialogRef.afterOpened().subscribe(result => {
       this.selected = ID;
       this.router.navigate(['.'], { relativeTo: this.route });
     });
   }
-  
+
   public goToTop() {
     window.scrollTo({
       top: 0,
       behavior: 'smooth'
     });
-}
+  }
 }
