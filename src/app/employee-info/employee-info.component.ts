@@ -1,12 +1,9 @@
 import { Component, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DeletePopupComponent } from '../delete-popup/delete-popup.component';
 import { EditPopupComponent } from '../edit-popup/edit-popup.component';
 import employeeData from '../server/employee.json';
-import {
-  DialogData,
-  EmployeeDashboardComponent,
-} from '../employee-dashboard/employee-dashboard.component';
+import { DialogData, EmployeeDashboardComponent } from '../employee-dashboard/employee-dashboard.component';
 
 interface Employee {
   id: number;
@@ -25,41 +22,41 @@ interface Employee {
   birthDate: string;
   educate: string;
 }
+
 @Component({
   selector: 'app-employee-info',
   templateUrl: './employee-info.component.html',
   styleUrls: ['./employee-info.component.css'],
 })
 export class EmployeeInfoComponent {
-  [x: string]: any;
   private employees: Employee[] = employeeData;
   public selectedEmployee: number;
 
   constructor(
-    public dialogRef: MatDialogRef<EmployeeDashboardComponent>,
+    public dialog: MatDialog,
     @Inject(MAT_DIALOG_DATA) public data: DialogData
-  ) {
-    this.dialogRef = dialogRef;
-  }
-  ngOnInit() {
-    this.employeeService.getEmployees().subscribe((employees: Employee[]) => {
-      this.employees = employees;
-    });
-  }
+  ) {}
+
   public setSelect(id: number): void {
-    this.selectedEmployee = this.employeeDashboard.id;
+    this.selectedEmployee = id;
   }
+
   public getSelect(): number {
     return this.selectedEmployee;
   }
 
   public openDialogEdit(): void {
-    this.dialog.open(EditPopupComponent);
+    this.dialog.closeAll();
+    const dialogRef = this.dialog.open(EditPopupComponent, {
+      data: { id: this.selectedEmployee },
+    });
   }
 
   public openDialogDel(ID: number): void {
-    this.dialog.open(DeletePopupComponent);
-    this.id = ID;
+    this.dialog.closeAll();
+    const dialogRef = this.dialog.open(DeletePopupComponent, {
+      data: { id: ID },
+    });
   }
 
   public getEmployees(ID: number): Employee[] {
