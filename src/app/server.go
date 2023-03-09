@@ -4,6 +4,7 @@ import (
     "context"
     "encoding/json"
     "fmt"
+    "io/ioutil"
     "log"
     "time"
 
@@ -57,6 +58,10 @@ func main() {
     }
     jsonStr := string(jsonBytes)
 
-    // Send the JSON string to Typescript (for example, by writing it to a file)
-    fmt.Println(jsonStr)
+    // Write the JSON string to a file
+    err = ioutil.WriteFile("data.json", []byte(jsonStr), 0644)
+    if err != nil {
+        log.Fatal(err)
+    }
+	fmt.Print(jsonStr)
 }
