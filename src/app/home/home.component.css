@@ -3,111 +3,124 @@ body {
     background: #e2dfdfae;
     font-family: 'Varela Round', sans-serif;
     font-size: 13px;
-    height:auto;
+    height: auto;
     background-size: cover;
     margin: 0;
     min-height: 100vh;
 }
+
 * {
-	margin: 0;
-	padding: 0;
-	list-style-type: none;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
 }
+
 .red-icon {
     color: red;
-  }
+}
 
 .pagination-right {
     display: flex;
     justify-content: flex-end;
     margin-right: 20px;
-  }
-  
+}
+
 
 #goToTopButton {
     display: none;
     position: fixed;
     bottom: 20px;
     right: 20px;
-  }
-ul{
-	display: flex;
-	width: 100%;
-	height: 80vh;
-	margin: auto;
-	max-width: 1000px;
-	justify-content: space-between;
-	text-align: center;
 }
+
+ul {
+    display: flex;
+    width: 100%;
+    height: 80vh;
+    margin: auto;
+    max-width: 1000px;
+    justify-content: space-between;
+    text-align: center;
+}
+
 li {
-	padding: 1rem 2rem 1.15rem;
-  text-transform: uppercase;
-  cursor: pointer;
-  color: #ebebeb;
-	min-width: 80px;
-	margin: auto;
+    padding: 1rem 2rem 1.15rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    color: #ebebeb;
+    min-width: 80px;
+    margin: auto;
 }
 
 li:hover {
-  background-size: 100% 100%;
-  color: #27262c;
-  animation: spring 300ms ease-out;
-  text-shadow: 0 -1px 0 #1036e1;
-	font-weight: bold;
+    background-size: 100% 100%;
+    color: #27262c;
+    animation: spring 300ms ease-out;
+    text-shadow: 0 -1px 0 #1036e1;
+    font-weight: bold;
 }
+
 li:active {
-  transform: translateY(4px);
+    transform: translateY(4px);
 }
 
 @keyframes spring {
-  15% {
-    -webkit-transform-origin: center center;
-    -webkit-transform: scale(1.2, 1.1);
-  }
-  40% {
-    -webkit-transform-origin: center center;
-    -webkit-transform: scale(0.95, 0.95);
-  }
-  75% {
-    -webkit-transform-origin: center center;
-    -webkit-transform: scale(1.05, 1);
-  }
-  100% {
-    -webkit-transform-origin: center center;
-    -webkit-transform: scale(1, 1);
-  }
+    15% {
+        -webkit-transform-origin: center center;
+        -webkit-transform: scale(1.2, 1.1);
+    }
+
+    40% {
+        -webkit-transform-origin: center center;
+        -webkit-transform: scale(0.95, 0.95);
+    }
+
+    75% {
+        -webkit-transform-origin: center center;
+        -webkit-transform: scale(1.05, 1);
+    }
+
+    100% {
+        -webkit-transform-origin: center center;
+        -webkit-transform: scale(1, 1);
+    }
 }
 
-.shameless-plug{
-  position: absolute;
-  bottom: 10px;
-  right: 0;
-  padding: 8px 20px;
-  color: #ccc;
-  text-decoration: none;
+.shameless-plug {
+    position: absolute;
+    bottom: 10px;
+    right: 0;
+    padding: 8px 20px;
+    color: #ccc;
+    text-decoration: none;
 }
+
 .table-responsive {
     margin: 30px 0;
 }
+
 .table-wrapper {
     min-width: 1000px;
     background: #ffffff;
     padding: 20px 25px;
     border-radius: 3px;
-    box-shadow: 0 1px 1px rgba(0,0,0,.05);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
 }
+
 .table-title {
     padding-bottom: 15px;
-    background:  #6783cc;
+    background: #6783cc;
     color: #fff;
     padding: 16px 30px;
     margin: -20px -25px 10px;
     border-radius: 3px 3px 0 0;
 }
+
 .table-title h2 {
     margin: 5px 0 0;
     font-size: 24px;
 }
+
 .table-title .btn {
     color: #566787;
     float: right;
@@ -120,69 +133,88 @@ li:active {
     outline: none !important;
     margin-left: 10px;
 }
-.table-title .btn:hover, .table-title .btn:focus {
+
+.table-title .btn:hover,
+.table-title .btn:focus {
     color: #566787;
     background: #f2f2f2;
 }
+
 .table-title .btn i {
     float: left;
     font-size: 21px;
     margin-right: 5px;
 }
+
 .table-title .btn span {
     float: left;
     margin-top: 2px;
 }
-table.table tr th, table.table tr td {
+
+table.table tr th,
+table.table tr td {
     border-color: #e9e9e9;
     padding: 12px 15px;
     vertical-align: middle;
 }
+
 table.table tr th:first-child {
     width: 1000px;
 }
+
 table.table tr th:last-child {
     width: 2000px;
 }
+
 table.table-striped tbody tr:nth-of-type(odd) {
     background-color: #fcfcfc;
 }
+
 table.table-striped.table-hover tbody tr:hover {
     background: #f5f5f5;
 }
+
 table.table th i {
     font-size: 13px;
     margin: 0 5px;
     cursor: pointer;
-}	
+}
+
 table.table td:last-child i {
     opacity: 0.9;
     font-size: 22px;
     margin: 0 5px;
 }
+
 table.table td a {
     font-weight: bold;
     color: #566787;
     display: inline-block;
     text-decoration: none;
 }
+
 table.table td a:hover {
     color: #2196F3;
 }
+
 table.table td a.settings {
     color: #2196F3;
 }
+
 table.table td a.delete {
     color: #F44336;
 }
+
 table.table td i {
     font-size: 19px;
 }
+
 table.table .avatar {
     border-radius: 50%;
     vertical-align: middle;
     margin-right: 10px;
 }
+
 .status {
     font-size: 30px;
     margin: 2px 2px 0 0;
@@ -190,37 +222,48 @@ table.table .avatar {
     vertical-align: middle;
     line-height: 10px;
 }
+
 .text-success {
     color: #10c469;
 }
+
 .text-info {
     color: #62c9e8;
 }
+
 .mat-column-id {
     flex: 0 0 50px;
 }
+
 .mat-column-email {
     flex: 0 0 240px;
 }
+
 .mat-column-salary {
     flex: 0 0 120px;
 }
-.mat-column-hireDate{
+
+.mat-column-hireDate {
     flex: 0 0 120px;
 }
-.mat-column-icon{
+
+.mat-column-icon {
     flex: 0 0 70px;
 }
+
 .text-warning {
     color: #FFC107;
 }
+
 .text-danger {
     color: #ff5b5b;
 }
+
 .pagination {
     float: right;
     margin: 0 0 5px;
 }
+
 .pagination li a {
     border: none;
     font-size: 13px;
@@ -233,22 +276,29 @@ table.table .avatar {
     text-align: center;
     padding: 0 6px;
 }
+
 .pagination li a:hover {
     color: #666;
-}	
-.pagination li.active a, .pagination li.active a.page-link {
+}
+
+.pagination li.active a,
+.pagination li.active a.page-link {
     background: #03A9F4;
 }
-.pagination li.active a:hover {        
+
+.pagination li.active a:hover {
     background: #0397d6;
 }
+
 .pagination li.disabled i {
     color: #ccc;
 }
+
 .pagination li i {
     font-size: 16px;
     padding-top: 6px
 }
+
 .hint-text {
     float: left;
     margin-top: 10px;
