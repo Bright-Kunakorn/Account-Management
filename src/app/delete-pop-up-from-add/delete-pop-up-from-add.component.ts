@@ -5,10 +5,10 @@ import { AuthenticationComponent } from '../authentication/authentication.compon
 import { EmployeeDashboardComponent, DialogData } from '../employee-dashboard/employee-dashboard.component';
 
 interface Employee {
-  id: number; 
-  first_name: string; 
+  id: number;
+  first_name: string;
   last_name: string;
-  avatar: string; 
+  avatar: string;
   department: string;
   job_title: string;
 }
@@ -20,11 +20,11 @@ interface Employee {
 })
 export class DeletePopUpFromAddComponent {
   private employees: Employee[] = WaitingEmployeeData;
-  
+
   constructor(
     public dialogRef: MatDialogRef<EmployeeDashboardComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
-    private dialog: MatDialog ) {
+    private dialog: MatDialog) {
     this.dialog = dialog;
   }
 
