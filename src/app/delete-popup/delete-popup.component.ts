@@ -55,7 +55,7 @@ export class DeletePopup {
 
   constructor(
     private dialogRef: MatDialogRef<EmployeeDashboardComponent>,
-    @Inject(MAT_DIALOG_DATA) private data: DialogData,
+    @Inject(MAT_DIALOG_DATA) private data: DialogData
   ) {
     this.employees = employeeData;
   }
