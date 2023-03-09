@@ -19,6 +19,7 @@ interface Employee {
   department: string;
   job_title: string;
 }
+
 @Component({
   selector: 'app-delete-popup',
   templateUrl: './delete-popup.component.html',
@@ -38,9 +39,35 @@ export class DeletePopupComponent {
   public onCloseClick(): void {
     this.dialog.closeAll();
   }
+
   public openDialogAuthent(): void {
     this.dialog.open(AuthenticationComponent);
   }
+
+  public getEmployees(ID: number): Employee[] {
+    return this.employees.filter((employee) => employee.id === ID);
+  }
+}
+
+export class DeletePopup {
+  private dialog: MatDialog;
+  private employees: Employee[];
+
+  constructor(
+    private dialogRef: MatDialogRef<EmployeeDashboardComponent>,
+    @Inject(MAT_DIALOG_DATA) private data: DialogData,
+  ) {
+    this.employees = employeeData;
+  }
+
+  public onCloseClick(): void {
+    this.dialog.closeAll();
+  }
+
+  public openDialogAuthent(): void {
+    this.dialog.open(AuthenticationComponent);
+  }
+
   public getEmployees(ID: number): Employee[] {
     return this.employees.filter((employee) => employee.id === ID);
   }
