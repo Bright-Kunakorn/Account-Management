@@ -59,7 +59,7 @@ export class InfoAddEmployeeComponent {
     this.id = ID;
   }
 
-  public getEmployees(): Employee[] {
-    return this.employees;
+  public getEmployees(ID : number): Employee[] {
+    return this.employees.filter(employee => employee.id === ID)
   }
 }

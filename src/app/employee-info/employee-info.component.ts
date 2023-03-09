@@ -61,7 +61,6 @@ export class EmployeeInfoComponent {
   }
 
   public getEmployees(ID :number): Employee[] {
-    console.log(this.employees.filter(employee => employee.id === ID)[0].id)
     return this.employees.filter(employee => employee.id === ID)
   }
 }
