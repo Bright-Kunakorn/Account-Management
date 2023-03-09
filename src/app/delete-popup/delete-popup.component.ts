@@ -33,7 +33,8 @@ export class DeletePopupComponent {
   public openDialogAuthent(): void {
     this.dialog.open(AuthenticationComponent)
   }
-  public getEmployees(): Employee[] {
-    return this.employees;
+  public getEmployees(ID : number): Employee[] {
+    return this.employees.filter(employee => employee.id === ID)
+
   }
 }
