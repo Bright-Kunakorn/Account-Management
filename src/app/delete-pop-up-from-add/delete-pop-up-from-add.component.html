@@ -4,13 +4,15 @@
     <form action="#" method="DELETE">
       <p>Are you sure you want to delete this user account? </p>
       <hr>
-      <label for="user-id" >User : {{data.selected}} {{getEmployees(data.selected)[0].first_name}} {{getEmployees(data.selected)[0].last_name}}</label>
+      <label for="user-id">User : {{data.selected}} {{getEmployees(data.selected)[0].first_name}}
+        {{getEmployees(data.selected)[0].last_name}}</label>
       <hr>
-      <label for="user-id" > {{getEmployees(data.selected)[0].department}}, {{getEmployees(data.selected)[0].job_title}}</label>
+      <label for="user-id"> {{getEmployees(data.selected)[0].department}},
+        {{getEmployees(data.selected)[0].job_title}}</label>
       <p type="text" id="user-id" name="user-id"><br><br>
       <div class="button-container">
         <button type="button" class="btn btn-danger" (click)="openDialogAuthent()">Confirm</button>
-        <button type="button" class="btn btn-primary" (click)="onCloseClick()" >No</button>
+        <button type="button" class="btn btn-primary" (click)="onCloseClick()">No</button>
       </div>
     </form>
   </mat-card>
