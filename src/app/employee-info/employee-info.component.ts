@@ -3,8 +3,10 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DeletePopupComponent } from '../delete-popup/delete-popup.component';
 import { EditPopupComponent } from '../edit-popup/edit-popup.component';
 import employeeData from '../server/employee.json';
-import { DialogData, EmployeeDashboardComponent } from '../employee-dashboard/employee-dashboard.component';
-
+import {
+  DialogData,
+  EmployeeDashboardComponent,
+} from '../employee-dashboard/employee-dashboard.component';
 
 interface Employee {
   id: number;
@@ -26,7 +28,7 @@ interface Employee {
 @Component({
   selector: 'app-employee-info',
   templateUrl: './employee-info.component.html',
-  styleUrls: ['./employee-info.component.css']
+  styleUrls: ['./employee-info.component.css'],
 })
 export class EmployeeInfoComponent {
   [x: string]: any;
@@ -35,14 +37,14 @@ export class EmployeeInfoComponent {
 
   constructor(
     public dialogRef: MatDialogRef<EmployeeDashboardComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData) {
+    @Inject(MAT_DIALOG_DATA) public data: DialogData
+  ) {
     this.dialogRef = dialogRef;
   }
   ngOnInit() {
-    this.employeeService.getEmployees()
-      .subscribe((employees: Employee[]) => {
-        this.employees = employees;
-      });
+    this.employeeService.getEmployees().subscribe((employees: Employee[]) => {
+      this.employees = employees;
+    });
   }
   public setSelect(id: number): void {
     this.selectedEmployee = this.employeeDashboard.id;
@@ -60,7 +62,7 @@ export class EmployeeInfoComponent {
     this.id = ID;
   }
 
-  public getEmployees(ID :number): Employee[] {
-    return this.employees.filter(employee => employee.id === ID)
+  public getEmployees(ID: number): Employee[] {
+    return this.employees.filter((employee) => employee.id === ID);
   }
 }
