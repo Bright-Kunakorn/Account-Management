@@ -64,7 +64,7 @@
 
         <div class="example-container mat-elevation-z8">
 
-          <mat-table [dataSource]="dataSource" matSort>
+          <mat-table [dataSource]="getDataSource()" matSort>
 
             <ng-container matColumnDef="id">
               <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
@@ -121,8 +121,8 @@
               </mat-cell>
             </ng-container>
 
-            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-            <mat-row *matRowDef="let employee; columns: displayedColumns;">
+            <mat-header-row *matHeaderRowDef="getDisplayedColumns()"></mat-header-row>
+            <mat-row *matRowDef="let employee; columns: getDisplayedColumns();">
             </mat-row>
           </mat-table>
 

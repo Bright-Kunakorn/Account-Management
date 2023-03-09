@@ -47,64 +47,76 @@ const EMPLOYEE_DATA: Employee[] = employeeData;
 })
 
 export class EmployeeDashboardComponent {
-  displayedColumns = ['id', 'first_name', 'email', 'job_title', 'department', 'salary', 'hireDate', 'icon'];
-  dataSource = new MatTableDataSource(EMPLOYEE_DATA);
-  employees: Employee[] = employeeData;
-  collectionSize = this.employees.length;
-  employee: Employee[];
-  public id: number;
-  selected: number;
-  routeQueryParams$: Subscription;
+  private displayedColumns = ['id', 'first_name', 'email', 'job_title', 'department', 'salary', 'hireDate', 'icon'];
+  private dataSource = new MatTableDataSource<Employee>();
+  private employees: Employee[] = [];
+  private collectionSize: number = 0;
+  private employee: Employee[];
+  private id: number;
+  private selected: number;
+  private routeQueryParams$: Subscription;
 
+  @ViewChild(MatPaginator) private paginator: MatPaginator;
+  @ViewChild(MatSort) private sort: MatSort;
+  private dialogRef: MatDialog;
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
-
-  constructor(public dialogRef: MatDialog, private route: ActivatedRoute, private router: Router) {
+  constructor(dialogRef: MatDialog, private route: ActivatedRoute, private router: Router) {
+    this.dialogRef = dialogRef;
     this.routeQueryParams$ = route.queryParams.subscribe(params => {
       if (params['dialog']) {
         this.openDialogInfo(this.id);
       }
     });
+    this.initialize();
   }
 
-  private employeeInfo: EmployeeInfoComponent;
-
-  public ngAfterViewInit() {
+  private initialize() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+    this.dataSource.filterPredicate = (data, filter) => {
+      const filterValue = filter.trim().toLowerCase();
+      return (
+        data.first_name.toLowerCase().includes(filterValue) ||
+        data.last_name.toLowerCase().includes(filterValue) ||
+        data.email.toLowerCase().includes(filterValue) ||
+        data.job_title.toLowerCase().includes(filterValue) ||
+        data.department.toLowerCase().includes(filterValue)
+      );
+    };
+    this.dataSource.filter = '';
+    this.dataSource.data = employeeData;
+    this.employees = employeeData;
+    this.collectionSize = this.employees.length;
+  }
+  public getDataSource(): MatTableDataSource<Employee> {
+    return this.dataSource;
+  }
+  public getDisplayedColumns() : string[]{
+    return this.displayedColumns;
   }
 
   public applyFilter(filterValue: string) {
-    filterValue = filterValue.trim();
-    filterValue = filterValue.toLowerCase();
     this.dataSource.filter = filterValue;
   }
+
   public openDialogDel(ID: number): void {
     const dialogRef = this.dialogRef.open(DeletePopupComponent, {
       data: { selected: ID }
     });
-
     dialogRef.afterOpened().subscribe(result => {
       this.selected = ID;
       this.router.navigate(['.'], { relativeTo: this.route });
     });
   }
-  public getID() {
-    return this.id;
-  }
-  public setID(ID: number) {
-    this.id = ID;
-  }
 
   public openDialogEdit(): void {
     this.dialogRef.open(EditPopupComponent);
   }
+
   public openDialogInfo(ID: number): void {
     const dialogRef = this.dialogRef.open(EmployeeInfoComponent, {
       data: { selected: ID }
     });
-
     dialogRef.afterOpened().subscribe(result => {
       this.selected = ID;
       this.router.navigate(['.'], { relativeTo: this.route });
@@ -118,8 +130,3 @@ export class EmployeeDashboardComponent {
     });
   }
 }
-
-
-
-
-
