@@ -22,7 +22,6 @@ import { EmployeeInfoComponent } from './employee-info/employee-info.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
-import { NgChartsModule } from 'ng2-charts';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
@@ -35,6 +34,8 @@ import { FormsModule } from '@angular/forms';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { Ng2SearchPipeModule} from 'ng2-search-filter';
 import { InfoAddEmployeeComponent } from './info-add-employee/info-add-employee.component';
+import { NgChartsModule } from 'ng2-charts';
+import { DeletePopUpFromAddComponent } from './delete-pop-up-from-add/delete-pop-up-from-add.component';
 
 const routerArray = [
   {
@@ -64,6 +65,7 @@ const routerArray = [
     AuthenticationComponent,
     EmployeeInfoComponent,
     InfoAddEmployeeComponent,
+    DeletePopUpFromAddComponent,
   ],
   imports: [
     BrowserModule,

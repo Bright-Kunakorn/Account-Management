@@ -64,13 +64,13 @@
   
               <ng-container matColumnDef="id">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
-                <mat-cell *matCellDef="let employee"> {{employee.id}} </mat-cell>
+                <mat-cell *matCellDef="let employee" (click)="openDialogInfo(employee.id)" > {{employee.id}} </mat-cell>
               </ng-container>
 
               <ng-container matColumnDef="avatar">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>  </mat-header-cell>
+                <mat-header-cell *matHeaderCellDef>  </mat-header-cell>
                 <mat-cell *matCellDef="let employee"> <img src="{{employee.avatar}}" alt="avatar"
-                  class="rounded-circle img-fluid" style="width: 30px;"> </mat-cell>
+                  class="rounded-circle img-fluid" style="width: 30px;" (click)="openDialogInfo(employee.id)" > </mat-cell>
               </ng-container>
   
               <ng-container matColumnDef="first_name">
@@ -99,7 +99,7 @@
                     <i class="material-icons">&#xE8B8;
                     </i>
                   </a>
-                  <a class="delete" title="Delete" (click)="openDialogDel(employee.id.valueOf())" data-toggle="tooltip"><i
+                  <a class="delete" title="Delete" (click)="openDialogDel(employee.id)" data-toggle="tooltip"><i
                       class="material-icons red-icon">&#xE5C9;</i></a>
                 </mat-cell>
               </ng-container>
