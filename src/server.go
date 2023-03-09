@@ -2,6 +2,7 @@ package main
 
 import (
     "context"
+    "encoding/json"
     "fmt"
     "log"
     "time"
@@ -32,17 +33,30 @@ func main() {
     }
     defer cur.Close(ctx)
 
-    // Loop over the documents and print them
+    // Create a slice of maps to hold the results
+    results := []map[string]interface{}{}
+
+    // Loop over the documents and add them to the results slice
     for cur.Next(ctx) {
         var result bson.M
         err := cur.Decode(&result)
         if err != nil {
             log.Fatal(err)
         }
-        fmt.Println(result)
+        results = append(results, result)
     }
 
     if err := cur.Err(); err != nil {
         log.Fatal(err)
     }
+
+    // Convert the results slice to JSON
+    jsonBytes, err := json.Marshal(results)
+    if err != nil {
+        log.Fatal(err)
+    }
+    jsonStr := string(jsonBytes)
+
+    // Send the JSON string to Typescript (for example, by writing it to a file)
+    fmt.Println(jsonStr)
 }
