@@ -12,7 +12,6 @@ const routes: Routes = [
   {path: 'home',component:HomeComponent},
   {path: 'employee-dashboard',component:EmployeeDashboardComponent},
   {path: 'add-employee',component:AddEmployeeComponent}
-
 ];
 
 @NgModule({
