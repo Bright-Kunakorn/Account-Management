@@ -6,21 +6,21 @@ import { DialogData, EmployeeDashboardComponent } from '../employee-dashboard/em
 import WaitingEmployeeData from '../waiting_employee.json';
 
 interface Employee {
-  id: number; 
-  first_name: string; 
+  id: number;
+  first_name: string;
   last_name: string;
-  email: string; 
-  phone: string; 
-  avatar: string; 
-  street: string; 
-  city: string; 
+  email: string;
+  phone: string;
+  avatar: string;
+  street: string;
+  city: string;
   department: string;
   job_title: string;
-  gender: string; 
-  salary: string; 
-  hireDate: string; 
-  birthDate: string; 
-  educate: string; 
+  gender: string;
+  salary: string;
+  hireDate: string;
+  birthDate: string;
+  educate: string;
 }
 @Component({
   selector: 'app-info-add-employee',
@@ -30,7 +30,7 @@ interface Employee {
 export class InfoAddEmployeeComponent {
   [x: string]: any;
   private employees: Employee[] = WaitingEmployeeData;
-  public selectedEmployee:number;
+  public selectedEmployee: number;
 
   constructor(
     public dialogRef: MatDialogRef<EmployeeDashboardComponent>,
@@ -43,10 +43,10 @@ export class InfoAddEmployeeComponent {
         this.employees = employees;
       });
   }
-  public setSelect(id:number): void{
+  public setSelect(id: number): void {
     this.selectedEmployee = this.employeeDashboard.id;
   }
-  public getSelect(): number{
+  public getSelect(): number {
     return this.selectedEmployee;
   }
 
