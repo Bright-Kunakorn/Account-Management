@@ -14,18 +14,18 @@ interface Role {
 })
 
 export class EditPopupComponent {
-  constructor(public dialog: MatDialog){
+  constructor(public dialog: MatDialog) {
   }
   roles: Role[] = [
-    {value: 'accountant', viewValue: 'Accountant'},
-    {value: 'market-manager', viewValue: 'Market Manager'},
-    {value: 'software-engineer', viewValue: 'Software Engineer'},
-    {value: 'marketing-coordinator', viewValue: 'Marketing Coordinator'},
-    {value: 'software-developer	', viewValue: 'Software Developer'},
-    {value: 'sales-manager', viewValue: 'Sales Manager'},
-    {value: 'human-resources-manager', viewValue: 'Human Resources Manager'},
-    {value: 'sales-representative', viewValue: 'Sales Representative'},
-    
+    { value: 'accountant', viewValue: 'Accountant' },
+    { value: 'market-manager', viewValue: 'Market Manager' },
+    { value: 'software-engineer', viewValue: 'Software Engineer' },
+    { value: 'marketing-coordinator', viewValue: 'Marketing Coordinator' },
+    { value: 'software-developer	', viewValue: 'Software Developer' },
+    { value: 'sales-manager', viewValue: 'Sales Manager' },
+    { value: 'human-resources-manager', viewValue: 'Human Resources Manager' },
+    { value: 'sales-representative', viewValue: 'Sales Representative' },
+
   ];
   public onCloseClick(): void {
     this.dialog.closeAll();
