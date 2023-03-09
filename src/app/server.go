@@ -59,7 +59,7 @@ func main() {
     jsonStr := string(jsonBytes)
 
     // Write the JSON string to a file
-    err = ioutil.WriteFile("data.json", []byte(jsonStr), 0644)
+    err = ioutil.WriteFile("employee.json", []byte(jsonStr), 0644)
     if err != nil {
         log.Fatal(err)
     }
