@@ -30,7 +30,6 @@ interface Employee {
 export class InfoAddEmployeeComponent {
   [x: string]: any;
   private employees: Employee[] = WaitingEmployeeData;
-  public selectedEmployee: number;
 
   constructor(
     public dialogRef: MatDialogRef<EmployeeDashboardComponent>,
@@ -45,9 +44,6 @@ export class InfoAddEmployeeComponent {
   }
   public setSelect(id: number): void {
     this.selectedEmployee = this.employeeDashboard.id;
-  }
-  public getSelect(): number {
-    return this.selectedEmployee;
   }
 
   public openDialogEdit(): void {
