@@ -5,10 +5,10 @@ import { DialogData, EmployeeDashboardComponent } from '../employee-dashboard/em
 import employeeData from '../employee.json'
 
 interface Employee {
-  id: number; 
-  first_name: string; 
+  id: number;
+  first_name: string;
   last_name: string;
-  avatar: string; 
+  avatar: string;
   department: string;
   job_title: string;
 }
@@ -19,11 +19,11 @@ interface Employee {
 })
 export class DeletePopupComponent {
   private employees: Employee[] = employeeData;
-  
+
   constructor(
     public dialogRef: MatDialogRef<EmployeeDashboardComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
-    private dialog: MatDialog ) {
+    private dialog: MatDialog) {
     this.dialog = dialog;
   }
 
