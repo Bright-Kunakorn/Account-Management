@@ -1,6 +1,6 @@
 import { Component, Inject, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import WaitingEmployeeData from '../waiting_employee.json';
+import WaitingEmployeeData from '../server/waiting_employee.json';
 import { AuthenticationComponent } from '../authentication/authentication.component';
 import { EmployeeDashboardComponent, DialogData } from '../employee-dashboard/employee-dashboard.component';
 

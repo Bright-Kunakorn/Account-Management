@@ -2,7 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DeletePopupComponent } from '../delete-popup/delete-popup.component';
 import { EditPopupComponent } from '../edit-popup/edit-popup.component';
-import employeeData from '../employee.json';
+import employeeData from '../server/employee.json';
 import { DialogData, EmployeeDashboardComponent } from '../employee-dashboard/employee-dashboard.component';
 
 
@@ -60,7 +60,8 @@ export class EmployeeInfoComponent {
     this.id = ID;
   }
 
-  public getEmployees(): Employee[] {
-    return this.employees;
+  public getEmployees(ID :number): Employee[] {
+    console.log(this.employees.filter(employee => employee.id === ID)[0].id)
+    return this.employees.filter(employee => employee.id === ID)
   }
 }

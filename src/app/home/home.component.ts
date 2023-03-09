@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import employeeData from '../employee.json';
+import employeeData from '../server/employee.json';
 
 interface Employee {
   id: number;

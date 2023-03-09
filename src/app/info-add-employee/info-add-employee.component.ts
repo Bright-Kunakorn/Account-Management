@@ -3,7 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DeletePopupComponent } from '../delete-popup/delete-popup.component';
 import { EditPopupComponent } from '../edit-popup/edit-popup.component';
 import { DialogData, EmployeeDashboardComponent } from '../employee-dashboard/employee-dashboard.component';
-import WaitingEmployeeData from '../waiting_employee.json';
+import WaitingEmployeeData from '../server/waiting_employee.json';
 
 interface Employee {
   id: number;

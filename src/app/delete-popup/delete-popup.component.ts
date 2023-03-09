@@ -2,7 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { AuthenticationComponent } from '../authentication/authentication.component';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DialogData, EmployeeDashboardComponent } from '../employee-dashboard/employee-dashboard.component';
-import employeeData from '../employee.json'
+import employeeData from '../server/employee.json'
 
 interface Employee {
   id: number;

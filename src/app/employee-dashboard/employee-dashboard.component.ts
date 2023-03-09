@@ -5,7 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { DeletePopupComponent } from '../delete-popup/delete-popup.component';
 import { EditPopupComponent } from '../edit-popup/edit-popup.component';
 import { EmployeeInfoComponent } from '../employee-info/employee-info.component';
-import employeeData from '../employee.json';
+import employeeData from '../server/employee.json';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs/internal/Subscription';

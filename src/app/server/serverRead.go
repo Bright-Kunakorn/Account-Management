@@ -3,7 +3,6 @@ package main
 import (
 	"context"
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"log"
 	"time"
@@ -63,32 +62,4 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	updateEmployee("Layer")
-}
-func updateEmployee(newTitle string) {
-	// Set client options
-	clientOptions := options.Client().ApplyURI("mongodb://localhost:27017")
-
-	// Connect to MongoDB
-	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
-	defer cancel()
-	client, err := mongo.Connect(ctx, clientOptions)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	// Get all documents from MongoDB
-	collection := client.Database("employee").Collection("employee")
-	filter := bson.M{"id": 1}
-
-	// Define the update to set the new value for the first_name field
-	update := bson.M{"$set": bson.M{"job_title": newTitle}}
-
-	// Update the document
-	result, err := collection.UpdateOne(ctx, filter, update)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	fmt.Printf("Updated %v document(s)\n", result.ModifiedCount)
 }
