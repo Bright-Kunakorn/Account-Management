@@ -1,8 +1,15 @@
 import { Component, Inject, ViewChild } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import {
+  MatDialog,
+  MatDialogRef,
+  MAT_DIALOG_DATA,
+} from '@angular/material/dialog';
 import WaitingEmployeeData from '../server/waiting_employee.json';
 import { AuthenticationComponent } from '../authentication/authentication.component';
-import { EmployeeDashboardComponent, DialogData } from '../employee-dashboard/employee-dashboard.component';
+import {
+  EmployeeDashboardComponent,
+  DialogData,
+} from '../employee-dashboard/employee-dashboard.component';
 
 interface Employee {
   id: number;
@@ -16,7 +23,7 @@ interface Employee {
 @Component({
   selector: 'app-delete-pop-up-from-add',
   templateUrl: './delete-pop-up-from-add.component.html',
-  styleUrls: ['./delete-pop-up-from-add.component.css']
+  styleUrls: ['./delete-pop-up-from-add.component.css'],
 })
 export class DeletePopUpFromAddComponent {
   private employees: Employee[] = WaitingEmployeeData;
@@ -24,7 +31,8 @@ export class DeletePopUpFromAddComponent {
   constructor(
     public dialogRef: MatDialogRef<EmployeeDashboardComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
-    private dialog: MatDialog) {
+    private dialog: MatDialog
+  ) {
     this.dialog = dialog;
   }
 
@@ -32,11 +40,9 @@ export class DeletePopUpFromAddComponent {
     this.dialog.closeAll();
   }
   public openDialogAuthent(): void {
-    this.dialog.open(AuthenticationComponent)
+    this.dialog.open(AuthenticationComponent);
   }
-  public getEmployees(ID : number): Employee[] {
-    return this.employees.filter(employee => employee.id === ID)
-    
+  public getEmployees(ID: number): Employee[] {
+    return this.employees.filter((employee) => employee.id === ID);
   }
-
 }
