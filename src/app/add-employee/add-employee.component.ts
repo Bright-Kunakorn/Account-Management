@@ -32,10 +32,17 @@ const EMPLOYEE_DATA: Employee[] = WaitingEmployeeData;
 @Component({
   selector: 'app-add-employee',
   templateUrl: './add-employee.component.html',
-  styleUrls: ['./add-employee.component.css']
+  styleUrls: ['./add-employee.component.css'],
 })
 export class AddEmployeeComponent {
-  displayedColumns = ['id', 'avatar', 'first_name', 'email', 'job_title', 'icon'];
+  displayedColumns = [
+    'id',
+    'avatar',
+    'first_name',
+    'email',
+    'job_title',
+    'icon',
+  ];
   dataSource = new MatTableDataSource(EMPLOYEE_DATA);
   employees: Employee[] = WaitingEmployeeData;
   collectionSize = this.employees.length;
@@ -46,8 +53,12 @@ export class AddEmployeeComponent {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(public dialogRef: MatDialog, private route: ActivatedRoute, private router: Router) {
-    this.routeQueryParams$ = route.queryParams.subscribe(params => {
+  constructor(
+    public dialogRef: MatDialog,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {
+    this.routeQueryParams$ = route.queryParams.subscribe((params) => {
       if (params['dialog']) {
         this.openDialogInfo(this.id);
       }
@@ -67,10 +78,10 @@ export class AddEmployeeComponent {
   }
   public openDialogDel(ID: number): void {
     const dialogRef = this.dialogRef.open(DeletePopUpFromAddComponent, {
-      data: { selected: ID }
+      data: { selected: ID },
     });
 
-    dialogRef.afterOpened().subscribe(result => {
+    dialogRef.afterOpened().subscribe((result) => {
       this.selected = ID;
       this.router.navigate(['.'], { relativeTo: this.route });
     });
@@ -88,10 +99,10 @@ export class AddEmployeeComponent {
   }
   public openDialogInfo(ID: number): void {
     const dialogRef = this.dialogRef.open(InfoAddEmployeeComponent, {
-      data: { selected: ID }
+      data: { selected: ID },
     });
 
-    dialogRef.afterOpened().subscribe(result => {
+    dialogRef.afterOpened().subscribe((result) => {
       this.selected = ID;
       this.router.navigate(['.'], { relativeTo: this.route });
     });
@@ -100,7 +111,7 @@ export class AddEmployeeComponent {
   public goToTop() {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth'
+      behavior: 'smooth',
     });
   }
 }
