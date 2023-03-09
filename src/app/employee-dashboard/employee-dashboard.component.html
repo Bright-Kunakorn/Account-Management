@@ -55,7 +55,7 @@
                 class="form-control" />
             </div>
             <button type="button" class="btn btn-primary my-button">
-              <i class="material-icons dp48 my-icon" style="font-size: 10px;" >search</i>
+              <i class="material-icons dp48 my-icon" style="font-size: 10px;">search</i>
             </button>
           </div>
         </div>
@@ -73,13 +73,14 @@
 
             <ng-container matColumnDef="first_name">
               <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
-              <mat-cell *matCellDef="let employee" (click)="openDialogInfo(employee.id)"   data-toggle="tooltip" >
+              <mat-cell *matCellDef="let employee" (click)="openDialogInfo(employee.id)" data-toggle="tooltip">
                 {{employee.first_name}} {{employee.last_name}}</mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="email">
               <mat-header-cell *matHeaderCellDef mat-sort-header> Email </mat-header-cell>
-              <mat-cell *matCellDef="let employee" (click)="openDialogInfo(employee.id)" data-toggle="tooltip"> {{employee.email}}
+              <mat-cell *matCellDef="let employee" (click)="openDialogInfo(employee.id)" data-toggle="tooltip">
+                {{employee.email}}
               </mat-cell>
             </ng-container>
 
@@ -97,7 +98,8 @@
 
             <ng-container matColumnDef="salary">
               <mat-header-cell *matHeaderCellDef mat-sort-header> Salary ($) </mat-header-cell>
-              <mat-cell *matCellDef="let employee" (click)="openDialogInfo(employee.id)" data-toggle="tooltip"> {{employee.salary}}
+              <mat-cell *matCellDef="let employee" (click)="openDialogInfo(employee.id)" data-toggle="tooltip">
+                {{employee.salary}}
               </mat-cell>
             </ng-container>
 
