@@ -9,6 +9,7 @@ import { EditPopupComponent } from '../edit-popup/edit-popup.component';
 import WaitingEmployeeData from '../server/waiting_employee.json';
 import { InfoAddEmployeeComponent } from '../info-add-employee/info-add-employee.component';
 import { DeletePopUpFromAddComponent } from '../delete-pop-up-from-add/delete-pop-up-from-add.component';
+import { AddPopupComponent } from '../add-popup/add-popup.component';
 
 interface Employee {
   id: number;
@@ -95,7 +96,7 @@ export class AddEmployeeComponent {
   }
 
   public openDialogEdit(): void {
-    this.dialogRef.open(EditPopupComponent);
+    this.dialogRef.open(AddPopupComponent);
   }
   public openDialogInfo(ID: number): void {
     const dialogRef = this.dialogRef.open(InfoAddEmployeeComponent, {

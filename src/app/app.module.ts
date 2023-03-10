@@ -36,6 +36,7 @@ import { Ng2SearchPipeModule} from 'ng2-search-filter';
 import { InfoAddEmployeeComponent } from './info-add-employee/info-add-employee.component';
 import { NgChartsModule } from 'ng2-charts';
 import { DeletePopUpFromAddComponent } from './delete-pop-up-from-add/delete-pop-up-from-add.component';
+import { AddPopupComponent } from './add-popup/add-popup.component';
 
 const routerArray = [
   {
@@ -66,6 +67,7 @@ const routerArray = [
     EmployeeInfoComponent,
     InfoAddEmployeeComponent,
     DeletePopUpFromAddComponent,
+    AddPopupComponent,
   ],
   imports: [
     BrowserModule,
