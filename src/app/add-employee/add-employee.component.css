@@ -242,7 +242,7 @@ table.table .avatar {
 }
 
 .mat-column-id {
-    flex: 0 0 50px;
+    flex: 0 0 90px;
 }
 
 .mat-column-avatar {
@@ -250,11 +250,16 @@ table.table .avatar {
 }
 
 .mat-column-email {
-    flex: 0 0 240px;
+    
+    flex: 0 0 340px;
+}
+.mat-column-name {
+    flex: 0 0 340px;
 }
 
 .mat-column-icon {
-    flex: 0 0 70px;
+    flex: 0.5 0 70px;
+    text-align: center;
 }
 
 .text-warning {

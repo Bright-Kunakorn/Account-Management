@@ -94,13 +94,12 @@
             </ng-container>
 
             <ng-container matColumnDef="icon">
-              <mat-header-cell *matHeaderCellDef mat-sort-header> </mat-header-cell>
+              <mat-header-cell *matHeaderCellDef > </mat-header-cell>
               <mat-cell *matCellDef="let employee">
 
-                <a class="settings" title="Settings" (click)="openDialogEdit()" data-toggle="tooltip">
-                  <i class="material-icons">&#xE8B8;
-                  </i>
-                </a>
+                <a class="add" title="Add" (click)="openDialogEdit()" data-toggle="tooltip">
+                  <i class="material-icons" style="color: green;">add_circle</i>
+                </a>                             
                 <a class="delete" title="Delete" (click)="openDialogDel(employee.id)" data-toggle="tooltip"><i
                     class="material-icons red-icon">&#xE5C9;</i></a>
               </mat-cell>
