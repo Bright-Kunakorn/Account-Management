@@ -15,9 +15,18 @@ interface Employee {
   id: number;
   first_name: string;
   last_name: string;
+  email: string;
+  phone: string;
   avatar: string;
+  street: string;
+  city: string;
   department: string;
   job_title: string;
+  gender: string;
+  salary: string;
+  hireDate: string;
+  birthDate: string;
+  educate: string;
 }
 
 @Component({

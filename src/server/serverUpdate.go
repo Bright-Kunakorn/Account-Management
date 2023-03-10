@@ -16,19 +16,20 @@ func main() {
 	}
 	defer client.Disconnect(context.Background())
 
+	new_role := "Layer"
 	// Choose the database and collection
 	collection := client.Database("employee").Collection("employee")
 
-
-	// Define the filter for the document to delete
-	filter := bson.M{"id": 3}
-
-	// Delete the document
-	result, err := collection.DeleteOne(context.Background(), filter)
+	// Define the update filter and update
+	filter := bson.M{"id": 2}
+	update := bson.M{"$set": bson.M{"job_title": new_role }}
+	
+	// Update the document
+	result, err := collection.UpdateOne(context.Background(), filter, update)
 	if err != nil {
 		panic(err)
 	}
-
-	// Print the number of documents deleted
-	fmt.Printf("Deleted %v documents\n", result.DeletedCount)
+	
+	// Print the number of documents updated
+	fmt.Printf("Updated %v documents\n", result.ModifiedCount)
 }
