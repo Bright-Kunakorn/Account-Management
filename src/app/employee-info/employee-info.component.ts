@@ -17,10 +17,11 @@ interface Employee {
   department: string;
   job_title: string;
   gender: string;
-  salary: string;
+  salary: number;
   hireDate: string;
   birthDate: string;
   educate: string;
+  available: boolean;
 }
 
 @Component({

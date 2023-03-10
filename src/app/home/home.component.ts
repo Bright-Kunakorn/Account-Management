@@ -13,10 +13,11 @@ interface Employee {
   department: string;
   job_title: string;
   gender: string;
-  salary: string;
+  salary: number;
   hireDate: string;
   birthDate: string;
   educate: string;
+  available: boolean;
 }
 
 @Component({
@@ -26,26 +27,29 @@ interface Employee {
 })
 export class HomeComponent {
   count: number;
+  filteredEmployees = employeeData.filter((employee) => employee.available === true);
 
-  filteredBusinessDev = employeeData.filter(
+
+
+  filteredBusinessDev = this.filteredEmployees.filter(
     (obj) => obj.department === 'Business Development'
   );
-  filteredProductManage = employeeData.filter(
+  filteredProductManage = this.filteredEmployees.filter(
     (obj) => obj.department === 'Product Management'
   );
-  filteredSupport = employeeData.filter((obj) => obj.department === 'Support');
-  filteredAccount = employeeData.filter(
+  filteredSupport = this.filteredEmployees.filter((obj) => obj.department === 'Support');
+  filteredAccount = this.filteredEmployees.filter(
     (obj) => obj.department === 'Accounting'
   );
-  filteredTraining = employeeData.filter(
+  filteredTraining = this.filteredEmployees.filter(
     (obj) => obj.department === 'Training'
   );
-  filteredLegal = employeeData.filter((obj) => obj.department === 'Legal');
-  filteredSales = employeeData.filter((obj) => obj.department === 'Sales');
-  filteredServices = employeeData.filter(
+  filteredLegal = this.filteredEmployees.filter((obj) => obj.department === 'Legal');
+  filteredSales = this.filteredEmployees.filter((obj) => obj.department === 'Sales');
+  filteredServices = this.filteredEmployees.filter(
     (obj) => obj.department === 'Services'
   );
-  filteredResearchDev = employeeData.filter(
+  filteredResearchDev = this.filteredEmployees.filter(
     (obj) => obj.department === 'Research and Development'
   );
   fillterData = [
@@ -97,7 +101,7 @@ export class HomeComponent {
       Released: '9',
     },
   ];
-  employees: Employee[] = employeeData;
+  employees: Employee[] = employeeData.filter((employee) => employee.available === true);
 
   public barChartOptions: any = {
     scaleShowVerticalLines: false,

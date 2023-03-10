@@ -22,10 +22,11 @@ interface Employee {
   department: string;
   job_title: string;
   gender: string;
-  salary: string;
+  salary: number;
   hireDate: string;
   birthDate: string;
   educate: string;
+  available: boolean;
 }
 export interface DialogData {
   selected: number;
@@ -48,10 +49,9 @@ const EMPLOYEE_DATA: Employee[] = employeeData;
 
 export class EmployeeDashboardComponent {
   displayedColumns = ['id', 'first_name', 'email', 'job_title', 'department', 'salary', 'hireDate', 'icon'];
-  dataSource = new MatTableDataSource(EMPLOYEE_DATA);
-  employees: Employee[] = employeeData;
+  employees: Employee[] =  employeeData.filter((employee) => employee.available === true);
+  dataSource = new MatTableDataSource(this.employees);
   collectionSize = this.employees.length;
-  employee: Employee[];
   public id: number;
   selected: number;
   routeQueryParams$: Subscription;
@@ -65,6 +65,7 @@ export class EmployeeDashboardComponent {
       if (params['dialog']) {
         this.openDialogInfo(this.id);
       }
+      console.log(this.employees.length)
     });
   }
 

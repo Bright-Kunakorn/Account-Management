@@ -5,7 +5,6 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs/internal/Subscription';
-import { EditPopupComponent } from '../edit-popup/edit-popup.component';
 import WaitingEmployeeData from '../server/waiting_employee.json';
 import { InfoAddEmployeeComponent } from '../info-add-employee/info-add-employee.component';
 import { DeletePopUpFromAddComponent } from '../delete-pop-up-from-add/delete-pop-up-from-add.component';
@@ -23,10 +22,12 @@ interface Employee {
   department: string;
   job_title: string;
   gender: string;
-  salary: string;
+  salary: number;
   hireDate: string;
   birthDate: string;
   educate: string;
+  available: boolean;
+
 }
 const EMPLOYEE_DATA: Employee[] = WaitingEmployeeData;
 

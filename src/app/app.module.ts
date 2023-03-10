@@ -37,6 +37,7 @@ import { InfoAddEmployeeComponent } from './info-add-employee/info-add-employee.
 import { NgChartsModule } from 'ng2-charts';
 import { DeletePopUpFromAddComponent } from './delete-pop-up-from-add/delete-pop-up-from-add.component';
 import { AddPopupComponent } from './add-popup/add-popup.component';
+import { ResignedDashboardComponent } from './resigned-dashboard/resigned-dashboard.component';
 
 const routerArray = [
   {
@@ -68,6 +69,7 @@ const routerArray = [
     InfoAddEmployeeComponent,
     DeletePopUpFromAddComponent,
     AddPopupComponent,
+    ResignedDashboardComponent,
   ],
   imports: [
     BrowserModule,

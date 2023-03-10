@@ -29,6 +29,9 @@
           <a class="nav-link p-3" href="add-employee">Add Account</a>
         </li>
         <li class="nav-item">
+          <a class="nav-item mr-3 nav-link p-3" href="resigned">Resinged</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-item mr-3 nav-link p-3" href="login">Logout</a>
         </li>
       </ul>
@@ -40,7 +43,7 @@
         <div class="table-title">
           <div class="row">
             <div class="col-sm-5">
-              <h2>Employee <b>Management</b></h2>
+              <h2>Employees <b>Dashboard</b></h2>
             </div>
             <div class="col-sm-7">
               <a href="add-employee" class="btn btn-secondary"><i class="material-icons">&#xE147;</i>
@@ -68,61 +71,61 @@
 
             <ng-container matColumnDef="id">
               <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
-              <mat-cell *matCellDef="let employee"> {{employee.id}} </mat-cell>
+              <mat-cell *matCellDef="let employees"> {{employees.id}} </mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="first_name">
               <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
-              <mat-cell *matCellDef="let employee" (click)="openDialogInfo(employee.id)" data-toggle="tooltip">
-                {{employee.first_name}} {{employee.last_name}}</mat-cell>
+              <mat-cell *matCellDef="let employees" (click)="openDialogInfo(employees.id)" data-toggle="tooltip">
+                {{employees.first_name}} {{employees.last_name}}</mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="email">
               <mat-header-cell *matHeaderCellDef mat-sort-header> Email </mat-header-cell>
-              <mat-cell *matCellDef="let employee" (click)="openDialogInfo(employee.id)" data-toggle="tooltip">
-                {{employee.email}}
+              <mat-cell *matCellDef="let employees" (click)="openDialogInfo(employees.id)" data-toggle="tooltip">
+                {{employees.email}}
               </mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="job_title">
               <mat-header-cell *matHeaderCellDef mat-sort-header> Role </mat-header-cell>
-              <mat-cell *matCellDef="let employee" (click)="openDialogInfo(employee.id)" data-toggle="tooltip">
-                {{employee.job_title}} </mat-cell>
+              <mat-cell *matCellDef="let employees" (click)="openDialogInfo(employees.id)" data-toggle="tooltip">
+                {{employees.job_title}} </mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="department">
               <mat-header-cell *matHeaderCellDef mat-sort-header> Department </mat-header-cell>
-              <mat-cell *matCellDef="let employee" (click)="openDialogInfo(employee.id)" data-toggle="tooltip">
-                {{employee.department}} </mat-cell>
+              <mat-cell *matCellDef="let employees" (click)="openDialogInfo(employees.id)" data-toggle="tooltip">
+                {{employees.department}} </mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="salary">
               <mat-header-cell *matHeaderCellDef mat-sort-header> Salary ($) </mat-header-cell>
-              <mat-cell *matCellDef="let employee" (click)="openDialogInfo(employee.id)" data-toggle="tooltip">
-                {{employee.salary}}
+              <mat-cell *matCellDef="let employees" (click)="openDialogInfo(employees.id)" data-toggle="tooltip">
+                {{employees.salary}}
               </mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="hireDate">
               <mat-header-cell *matHeaderCellDef mat-sort-header> Hire Date </mat-header-cell>
-              <mat-cell *matCellDef="let employee" (click)="openDialogInfo(employee.id)" data-toggle="tooltip">
-                {{employee.hireDate}} </mat-cell>
+              <mat-cell *matCellDef="let employees" (click)="openDialogInfo(employees.id)" data-toggle="tooltip">
+                {{employees.hireDate}} </mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="icon">
               <mat-header-cell *matHeaderCellDef mat-sort-header> </mat-header-cell>
-              <mat-cell *matCellDef="let employee">
+              <mat-cell *matCellDef="let employees">
                 <a class="settings" title="Settings" (click)="openDialogEdit()" data-toggle="tooltip">
                   <i class="material-icons">&#xE8B8;
                   </i>
                 </a>
-                <a class="delete" title="Delete" (click)="openDialogDel(employee.id.valueOf())" data-toggle="tooltip"><i
+                <a class="delete" title="Delete" (click)="openDialogDel(employees.id.valueOf())" data-toggle="tooltip"><i
                     class="material-icons red-icon">&#xE5C9;</i></a>
               </mat-cell>
             </ng-container>
 
             <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-            <mat-row *matRowDef="let employee; columns: displayedColumns;">
+            <mat-row *matRowDef="let employees; columns: displayedColumns;">
             </mat-row>
           </mat-table>
 
