@@ -40,46 +40,56 @@ const EMPLOYEE_DATA: Employee[] = employeeData;
  */
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 @Component({
   selector: 'app-employee-dashboard',
   templateUrl: './employee-dashboard.component.html',
   styleUrls: ['./employee-dashboard.component.css'],
-
 })
-
-export class EmployeeDashboardComponent implements OnInit{
-  displayedColumns = ['id', 'first_name', 'email', 'job_title', 'department', 'salary', 'hireDate', 'icon'];
-  private employees: Employee[] =  employeeData.filter((employee) => employee.available === true);
+export class EmployeeDashboardComponent implements OnInit {
+  displayedColumns = [
+    'id',
+    'first_name',
+    'email',
+    'job_title',
+    'department',
+    'salary',
+    'hireDate',
+    'icon',
+  ];
+  private employees: Employee[] = employeeData.filter(
+    (employee) => employee.available === true
+  );
   private dataSource = new MatTableDataSource(this.employees);
   collectionSize = this.employees.length;
-  public id: number;
-  selected: number;
+  private id: number;
+  private selected: number;
   routeQueryParams$: Subscription;
-
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(public dialogRef: MatDialog, private route: ActivatedRoute, private router: Router, private http: HttpClient) {
-    this.routeQueryParams$ = route.queryParams.subscribe(params => {
+  constructor(
+    public dialogRef: MatDialog,
+    private route: ActivatedRoute,
+    private router: Router,
+    private http: HttpClient
+  ) {
+    this.routeQueryParams$ = route.queryParams.subscribe((params) => {
       if (params['dialog']) {
         this.openDialogInfo(this.id);
       }
-      console.log(this.employees.length)
+      console.log(this.employees.length);
     });
   }
   ngOnInit(): void {
-    this.http.get("http://localhost:8080/employees").subscribe(response => {
-      console.log("response",response)
-     });
+    this.http.get('http://localhost:4200/employees').subscribe((response) => {
+      console.log('response', response);
+    });
   }
 
-
-  private employeeInfo: EmployeeInfoComponent;
-
-  public getDatasource(){
+  public getDatasource() {
     return this.dataSource;
   }
   public ngAfterViewInit() {
@@ -94,10 +104,10 @@ export class EmployeeDashboardComponent implements OnInit{
   }
   public openDialogDel(ID: number): void {
     const dialogRef = this.dialogRef.open(DeletePopupComponent, {
-      data: { selected: ID }
+      data: { selected: ID },
     });
 
-    dialogRef.afterOpened().subscribe(result => {
+    dialogRef.afterOpened().subscribe((result) => {
       this.selected = ID;
       this.router.navigate(['.'], { relativeTo: this.route });
     });
@@ -108,10 +118,10 @@ export class EmployeeDashboardComponent implements OnInit{
   }
   public openDialogInfo(ID: number): void {
     const dialogRef = this.dialogRef.open(EmployeeInfoComponent, {
-      data: { selected: ID }
+      data: { selected: ID },
     });
 
-    dialogRef.afterOpened().subscribe(result => {
+    dialogRef.afterOpened().subscribe((result) => {
       this.selected = ID;
       this.router.navigate(['.'], { relativeTo: this.route });
     });
@@ -122,12 +132,7 @@ export class EmployeeDashboardComponent implements OnInit{
   public goToTop() {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth'
+      behavior: 'smooth',
     });
   }
 }
-
-
-
-
-
