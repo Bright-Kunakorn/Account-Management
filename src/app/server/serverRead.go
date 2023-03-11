@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"log"
+	"net/http"
 	"time"
 
 	"go.mongodb.org/mongo-driver/bson"
@@ -13,56 +14,119 @@ import (
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
-func main() {
-	// Set client options
+type Employee struct {
+	client     *mongo.Client
+	collection *mongo.Collection
+}
+
+func NewEmployee() (*Employee, error) {
 	clientOptions := options.Client().ApplyURI("mongodb://localhost:27017")
 
-	// Connect to MongoDB
-	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	ctx, cancel := context.WithTimeout(context.Background(), 10000*time.Second)
 	defer cancel()
 	client, err := mongo.Connect(ctx, clientOptions)
 	if err != nil {
-		log.Fatal(err)
+		return nil, err
 	}
 
-	// Get all documents from MongoDB
 	collection := client.Database("employee").Collection("employee")
-	filter := bson.M{} // empty filter to match all documents
-	cur, err := collection.Find(ctx, filter)
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer cur.Close(ctx)
 
-	// Create a slice of maps to hold the results
+	return &Employee{client, collection}, nil
+}
+
+func (e *Employee) GetAllEmployees() ([]map[string]interface{}, error) {
+	filter := bson.M{}
+	cur, err := e.collection.Find(context.Background(), filter)
+	if err != nil {
+		return nil, err
+	}
+	defer cur.Close(context.Background())
+
 	results := []map[string]interface{}{}
 
-	// Loop over the documents and add them to the results slice
-	for cur.Next(ctx) {
+	for cur.Next(context.Background()) {
 		var result bson.M
 		err := cur.Decode(&result)
 		if err != nil {
-			log.Fatal(err)
+			return nil, err
 		}
 		results = append(results, result)
 	}
 
 	if err := cur.Err(); err != nil {
-		log.Fatal(err)
+		return nil, err
 	}
 
-	// Convert the results slice to JSON
-	jsonBytes, err := json.Marshal(results)
+	return results, nil
+}
+
+func (e *Employee) SaveEmployeesToFile(filePath string) error {
+	employees, err := e.GetAllEmployees()
 	if err != nil {
-		log.Fatal(err)
+		return err
+	}
+
+	jsonBytes, err := json.Marshal(employees)
+	if err != nil {
+		return err
 	}
 	jsonStr := string(jsonBytes)
 
-	// Write the JSON string to a file
-	err = ioutil.WriteFile("employee.json", []byte(jsonStr), 0644)
+	err = ioutil.WriteFile(filePath, []byte(jsonStr), 0644)
+	if err != nil {
+		return err
+	}
+
+	fmt.Printf("Updated documents")
+	return nil
+}
+
+func main() {
+	employee, err := NewEmployee()
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Printf("Updated documents")
 
+	http.HandleFunc("/employees", func(w http.ResponseWriter, r *http.Request) {
+		if r.Method != http.MethodGet {
+			w.WriteHeader(http.StatusMethodNotAllowed)
+			return
+		}
+
+		employees, err := employee.GetAllEmployees()
+		if err != nil {
+			w.WriteHeader(http.StatusInternalServerError)
+			w.Write([]byte(err.Error()))
+			return
+		}
+
+		jsonBytes, err := json.Marshal(employees)
+		if err != nil {
+			w.WriteHeader(http.StatusInternalServerError)
+			w.Write([]byte(err.Error()))
+			return
+		}
+
+		w.Header().Set("Content-Type", "application/json")
+		w.Write(jsonBytes)
+	})
+
+	http.HandleFunc("/employees/file", func(w http.ResponseWriter, r *http.Request) {
+		if r.Method != http.MethodPost {
+			w.WriteHeader(http.StatusMethodNotAllowed)
+			return
+		}
+
+		err := employee.SaveEmployeesToFile("employee.json")
+		if err != nil {
+			w.WriteHeader(http.StatusInternalServerError)
+			w.Write([]byte(err.Error()))
+			return
+		}
+
+		w.Write([]byte("Employees saved to file"))
+	})
+
+	fmt.Println("Listening on :8080")
+	log.Fatal(http.ListenAndServe(":8080", nil))
 }

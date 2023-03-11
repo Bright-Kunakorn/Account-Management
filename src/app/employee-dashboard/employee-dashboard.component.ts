@@ -49,8 +49,8 @@ const EMPLOYEE_DATA: Employee[] = employeeData;
 
 export class EmployeeDashboardComponent {
   displayedColumns = ['id', 'first_name', 'email', 'job_title', 'department', 'salary', 'hireDate', 'icon'];
-  employees: Employee[] =  employeeData.filter((employee) => employee.available === true);
-  dataSource = new MatTableDataSource(this.employees);
+  private employees: Employee[] =  employeeData.filter((employee) => employee.available === true);
+  private dataSource = new MatTableDataSource(this.employees);
   collectionSize = this.employees.length;
   public id: number;
   selected: number;
@@ -71,6 +71,9 @@ export class EmployeeDashboardComponent {
 
   private employeeInfo: EmployeeInfoComponent;
 
+  public getDatasource(){
+    return this.dataSource;
+  }
   public ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
@@ -91,12 +94,6 @@ export class EmployeeDashboardComponent {
       this.router.navigate(['.'], { relativeTo: this.route });
     });
   }
-  public getID() {
-    return this.id;
-  }
-  public setID(ID: number) {
-    this.id = ID;
-  }
 
   public openDialogEdit(): void {
     this.dialogRef.open(EditPopupComponent);
@@ -111,7 +108,9 @@ export class EmployeeDashboardComponent {
       this.router.navigate(['.'], { relativeTo: this.route });
     });
   }
-
+  public getEmployee(): Employee[] {
+    return this.employees;
+  }
   public goToTop() {
     window.scrollTo({
       top: 0,

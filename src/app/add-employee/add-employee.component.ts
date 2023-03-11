@@ -109,7 +109,6 @@ export class AddEmployeeComponent {
       this.router.navigate(['.'], { relativeTo: this.route });
     });
   }
-
   public goToTop() {
     window.scrollTo({
       top: 0,
