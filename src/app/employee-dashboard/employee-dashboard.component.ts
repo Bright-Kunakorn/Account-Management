@@ -10,7 +10,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { HttpClient } from '@angular/common/http';
-import { response } from 'express';
 
 interface Employee {
   id: number;
@@ -62,13 +61,13 @@ export class EmployeeDashboardComponent implements OnInit {
     (employee) => employee.available === true
   );
   private dataSource = new MatTableDataSource(this.employees);
-  collectionSize = this.employees.length;
   private id: number;
   private selected: number;
   routeQueryParams$: Subscription;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+  employee: Employee[];
 
   constructor(
     public dialogRef: MatDialog,
@@ -116,6 +115,7 @@ export class EmployeeDashboardComponent implements OnInit {
   public openDialogEdit(): void {
     this.dialogRef.open(EditPopupComponent);
   }
+
   public openDialogInfo(ID: number): void {
     const dialogRef = this.dialogRef.open(EmployeeInfoComponent, {
       data: { selected: ID },
@@ -126,13 +126,7 @@ export class EmployeeDashboardComponent implements OnInit {
       this.router.navigate(['.'], { relativeTo: this.route });
     });
   }
-  public getEmployee(): Employee[] {
-    return this.employees;
-  }
-  public goToTop() {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
+  public getEmployee(id: number): Employee {
+    return this.employees[id];
   }
 }
