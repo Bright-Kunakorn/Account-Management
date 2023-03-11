@@ -1,4 +1,4 @@
-import { Component, ViewChild, Injectable } from '@angular/core';
+import { Component, ViewChild, Injectable, OnInit } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -9,6 +9,8 @@ import employeeData from '../server/employee.json';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs/internal/Subscription';
+import { HttpClient } from '@angular/common/http';
+import { response } from 'express';
 
 interface Employee {
   id: number;
@@ -47,7 +49,7 @@ const EMPLOYEE_DATA: Employee[] = employeeData;
 
 })
 
-export class EmployeeDashboardComponent {
+export class EmployeeDashboardComponent implements OnInit{
   displayedColumns = ['id', 'first_name', 'email', 'job_title', 'department', 'salary', 'hireDate', 'icon'];
   private employees: Employee[] =  employeeData.filter((employee) => employee.available === true);
   private dataSource = new MatTableDataSource(this.employees);
@@ -60,7 +62,7 @@ export class EmployeeDashboardComponent {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(public dialogRef: MatDialog, private route: ActivatedRoute, private router: Router) {
+  constructor(public dialogRef: MatDialog, private route: ActivatedRoute, private router: Router, private http: HttpClient) {
     this.routeQueryParams$ = route.queryParams.subscribe(params => {
       if (params['dialog']) {
         this.openDialogInfo(this.id);
@@ -68,6 +70,12 @@ export class EmployeeDashboardComponent {
       console.log(this.employees.length)
     });
   }
+  ngOnInit(): void {
+    this.http.get("http://localhost:8080/employees").subscribe(response => {
+      console.log("response",response)
+     });
+  }
+
 
   private employeeInfo: EmployeeInfoComponent;
 
