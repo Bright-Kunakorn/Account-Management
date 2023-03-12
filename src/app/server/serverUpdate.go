@@ -19,7 +19,7 @@ func main() {
 	collection := client.Database("employee").Collection("employee")
 
 	filter := bson.M{"id": 2}
-	update := bson.M{"$set": bson.M{"job_title": new_role }}
+	update := bson.M{"$set": bson.M{"job_title": new_role}}
 
 	result, err := collection.UpdateOne(context.Background(), filter, update)
 	if err != nil {
