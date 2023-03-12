@@ -17,7 +17,6 @@ func main() {
 
 	collection := client.Database("employee").Collection("employee")
 
-
 	filter := bson.M{"id": 3}
 
 	result, err := collection.DeleteOne(context.Background(), filter)
