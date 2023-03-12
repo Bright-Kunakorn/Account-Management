@@ -55,7 +55,7 @@ export class InfoAddEmployeeComponent {
     this.id = ID;
   }
 
-  public getEmployees(ID : number): Employee[] {
+  public getEmployees(ID: number): Employee[] {
     return this.employees.filter(employee => employee.id === ID)
   }
 }
