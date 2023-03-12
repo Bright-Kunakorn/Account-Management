@@ -29,17 +29,14 @@ type Person struct {
 }
 
 func main() {
-	// Set up a client to connect to a MongoDB server
 	client, err := mongo.Connect(context.Background(), options.Client().ApplyURI("mongodb://localhost:27017"))
 	if err != nil {
 		log.Fatal(err)
 	}
 	defer client.Disconnect(context.Background())
 
-	// Get a handle for the "people" collection
 	collection := client.Database("employee").Collection("employee")
 
-	// Create a new Person document
 	person := Person{
 		FirstName:  "John",
 		LastName:   "Doe",
@@ -57,12 +54,10 @@ func main() {
 		Educate:    "Bachelor's Degree",
 	}
 
-	// Insert the document into the "people" collection
 	insertResult, err := collection.InsertOne(context.Background(), person)
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	// Print the ID of the newly inserted document
 	fmt.Println("Inserted document ID:", insertResult.InsertedID)
 }

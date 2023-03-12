@@ -12,27 +12,22 @@ import (
 )
 
 func main() {
-	// Set up MongoDB client
 	client, err := mongo.Connect(context.Background(), options.Client().ApplyURI("mongodb://localhost:27017"))
 	if err != nil {
 		panic(err)
 	}
 	defer client.Disconnect(context.Background())
 
-	// Choose the database and collection
 	collection := client.Database("employee").Collection("registerEmployee")
 
 
-	// Define the filter for the document to delete
 	filter := bson.M{"id": 6}
 
-	// Delete the document
 	result, err := collection.DeleteOne(context.Background(), filter)
 	if err != nil {
 		panic(err)
 	}
 
-	// Print the number of documents deleted
 	fmt.Printf("Deleted %v documents\n", result.DeletedCount)
 	addEmployee()
 }
@@ -58,17 +53,14 @@ type Person struct {
 }
 
 func addEmployee() {
-	// Set up a client to connect to a MongoDB server
 	client, err := mongo.Connect(context.Background(), options.Client().ApplyURI("mongodb://localhost:27017"))
 	if err != nil {
 		log.Fatal(err)
 	}
 	defer client.Disconnect(context.Background())
 
-	// Get a handle for the "people" collection
 	collection := client.Database("employee").Collection("employee")
 
-	// Create a new Person document
 	person := Person{
 		ID:         10,
 		FirstName:  "John",
@@ -87,12 +79,10 @@ func addEmployee() {
 		Educate:    "Bachelor's Degree",
 	}
 
-	// Insert the document into the "people" collection
 	insertResult, err := collection.InsertOne(context.Background(), person)
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	// Print the ID of the newly inserted document
 	fmt.Println("Inserted document ID:", insertResult.InsertedID)
 }
