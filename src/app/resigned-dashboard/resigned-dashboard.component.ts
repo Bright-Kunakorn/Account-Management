@@ -36,7 +36,7 @@ interface Employee {
 export class ResignedDashboardComponent {
 
   displayedColumns = ['id', 'first_name', 'email', 'job_title', 'department', 'salary', 'hireDate'];
-  employees: Employee[] =  employeeData.filter((employee) => employee.available === false);
+  employees: Employee[] = employeeData.filter((employee) => employee.available === false);
   dataSource = new MatTableDataSource(this.employees);
   collectionSize = this.employees.length;
   public id: number;
