@@ -89,13 +89,6 @@ export class AddEmployeeComponent {
     });
   }
 
-  public getID() {
-    return this.id;
-  }
-  public setID(ID: number) {
-    this.id = ID;
-  }
-
   public openDialogEdit(): void {
     this.dialogRef.open(AddPopupComponent);
   }
@@ -107,12 +100,6 @@ export class AddEmployeeComponent {
     dialogRef.afterOpened().subscribe((result) => {
       this.selected = ID;
       this.router.navigate(['.'], { relativeTo: this.route });
-    });
-  }
-  public goToTop() {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
     });
   }
 }
