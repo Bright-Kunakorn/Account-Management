@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
+
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
@@ -15,11 +16,11 @@ func main() {
 	}
 	defer client.Disconnect(context.Background())
 
-	new_role := "Layer"
+	new_name := "john"
 	collection := client.Database("employee").Collection("employee")
 
-	filter := bson.M{"id": 2}
-	update := bson.M{"$set": bson.M{"job_title": new_role}}
+	filter := bson.M{"first_name": "Celesta"}
+	update := bson.M{"$set": bson.M{"first_name": new_name}}
 
 	result, err := collection.UpdateOne(context.Background(), filter, update)
 	if err != nil {
