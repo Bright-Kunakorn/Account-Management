@@ -105,13 +105,11 @@ export class EmployeeDashboardComponent implements OnInit {
     const dialogRef = this.dialogRef.open(DeletePopupComponent, {
       data: { selected: ID },
     });
-
     dialogRef.afterOpened().subscribe((result) => {
       this.selected = ID;
       this.router.navigate(['.'], { relativeTo: this.route });
     });
   }
-
   public openDialogEdit(): void {
     this.dialogRef.open(EditPopupComponent);
   }
